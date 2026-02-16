@@ -1,1 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad – Rally Codriver Calculator</title>
+  <style>
+    :root {
+      --primary: #e63012;
+      --primary-dark: #b52208;
+      --bg: #0d0d0d;
+      --surface: #1a1a1a;
+      --surface2: #252525;
+      --border: #333;
+      --text: #e8e8e8;
+      --text-muted: #a0a0a0;
+      --accent: #ff6b35;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; }
 
+    header {
+      background: linear-gradient(135deg, #1a0000 0%, #2a0a00 50%, #1a0000 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 24px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 24px rgba(230,48,18,0.3);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .header-icon { font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(230,48,18,0.7)); }
+    .app-name { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; color: #fff; text-shadow: 0 0 16px rgba(230,48,18,0.5); }
+    .app-subtitle { font-size: 0.85rem; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-top: 4px; }
+
+    .hero-band {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--accent), var(--primary));
+      background-size: 300% 100%;
+      animation: gradientMove 6s ease infinite;
+      text-align: center; padding: 10px 24px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff;
+    }
+    @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .intro-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 4px solid var(--primary); border-radius: 12px;
+      padding: 28px 32px; margin-bottom: 36px;
+    }
+    .intro-card h1 { font-size: 1.9rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .intro-card p { color: var(--text-muted); }
+    .last-update {
+      display: inline-block; margin-top: 14px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 0.78rem; color: var(--accent); font-weight: 600;
+    }
+
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 32px; margin-bottom: 40px; }
+    .toc h2 { font-size: 1rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+    .toc ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 16px; }
+    .toc ul li a { color: var(--accent); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; padding: 4px 0; transition: color 0.2s; }
+    .toc ul li a:hover { color: #fff; }
+    .toc ul li a::before { content: '▸'; font-size: 0.7rem; color: var(--primary); }
+
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 24px; overflow: hidden; transition: box-shadow 0.2s; }
+    .section:hover { box-shadow: 0 0 24px rgba(230,48,18,0.12); }
+    .section-header { display: flex; align-items: center; gap: 14px; padding: 20px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+    .section-icon { font-size: 1.6rem; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(230,48,18,0.12); border-radius: 10px; border: 1px solid rgba(230,48,18,0.25); flex-shrink: 0; }
+    .section-header h2 { font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .section-body { padding: 24px 28px; font-size: 0.95rem; color: #d0d0d0; }
+    .section-body p { margin-bottom: 14px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .data-list { list-style: none; margin: 14px 0; }
+    .data-list li { display: flex; gap: 10px; padding: 10px 14px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+    .data-list li::before { content: '◆'; color: var(--primary); font-size: 0.65rem; margin-top: 4px; flex-shrink: 0; }
+    .data-list li strong { color: var(--accent); }
+
+    .rights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 14px; }
+    .right-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .right-item strong { display: block; color: var(--accent); font-size: 0.85rem; margin-bottom: 4px; }
+    .right-item span { color: var(--text-muted); font-size: 0.82rem; }
+
+    .alert-box { display: flex; gap: 12px; background: rgba(230,48,18,0.08); border: 1px solid rgba(230,48,18,0.35); border-radius: 10px; padding: 14px 18px; margin: 14px 0; font-size: 0.9rem; }
+    .alert-box .alert-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .success-box { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.35); }
+
+    .third-party-list { margin-top: 14px; }
+    .third-party-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; background: var(--surface2); }
+    .third-party-item .tp-name { font-weight: 700; color: var(--accent); min-width: 150px; font-size: 0.9rem; }
+    .third-party-item .tp-desc { color: var(--text-muted); font-size: 0.88rem; }
+
+    .contact-card { background: linear-gradient(135deg, #1a0800 0%, #2a1000 100%); border: 1px solid rgba(230,48,18,0.4); border-radius: 14px; padding: 32px; text-align: center; margin-top: 40px; }
+    .contact-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .contact-card p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
+    .contact-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; font-weight: 700; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.1s; }
+    .contact-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    footer { background: var(--surface); border-top: 1px solid var(--border); text-align: center; padding: 24px; font-size: 0.82rem; color: var(--text-muted); }
+    footer strong { color: var(--primary); }
+
+    @media (max-width: 600px) {
+      .intro-card, .section-body, .toc { padding: 18px 20px; }
+      .section-header { padding: 16px 20px; }
+      .toc ul { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+      .third-party-item { flex-direction: column; gap: 4px; }
+      .app-name { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="header-icon">🏁</span>
+    <div>
+      <div class="app-name">Rally Codriver Calculator</div>
+      <div class="app-subtitle">Privacidad · Menkaura Soft</div>
+    </div>
+  </div>
+</header>
+<div class="hero-band">Política de Privacidad</div>
+
+<main class="container">
+
+  <div class="intro-card">
+    <h1>Política de Privacidad</h1>
+    <p>Tu privacidad es fundamental para nosotros. Aquí explicamos de forma clara qué datos usamos y por qué.</p>
+    <span class="last-update">📅 Última actualización: febrero de 2025</span>
+  </div>
+
+  <nav class="toc">
+    <h2>Contenido</h2>
+    <ul>
+      <li><a href="#responsable">1. Responsable</a></li>
+      <li><a href="#datos">2. Datos recogidos</a></li>
+      <li><a href="#uso">3. Uso de los datos</a></li>
+      <li><a href="#almacenamiento">4. Almacenamiento local</a></li>
+      <li><a href="#terceros">5. Terceros</a></li>
+      <li><a href="#conservacion">6. Conservación</a></li>
+      <li><a href="#derechos">7. Tus derechos</a></li>
+      <li><a href="#seguridad">8. Seguridad</a></li>
+      <li><a href="#menores">9. Menores</a></li>
+      <li><a href="#cambios">10. Cambios</a></li>
+    </ul>
+  </nav>
+
+  <!-- 1. RESPONSABLE -->
+  <section class="section" id="responsable">
+    <div class="section-header">
+      <span class="section-icon">🏢</span>
+      <h2>1. Responsable del tratamiento</h2>
+    </div>
+    <div class="section-body">
+      <p>El responsable del tratamiento de los datos personales de los usuarios de Rally Codriver Calculator es:</p>
+      <ul class="data-list">
+        <li><strong>Empresa:</strong> Menkaura Soft</li>
+        <li><strong>Aplicación:</strong> Rally Codriver Calculator</li>
+        <li><strong>Contacto:</strong> privacy@menkaurasoft.com</li>
+      </ul>
+      <p>Al descargar y utilizar Rally Codriver Calculator, el usuario acepta los términos descritos en esta política de privacidad, de conformidad con el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).</p>
+    </div>
+  </section>
+
+  <!-- 2. DATOS -->
+  <section class="section" id="datos">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <h2>2. Datos que recogemos</h2>
+    </div>
+    <div class="section-body">
+      <p>Rally Codriver Calculator es una herramienta de cálculo offline para copilotos de rally. La aplicación recoge únicamente los datos estrictamente necesarios para su funcionamiento:</p>
+      <ul class="data-list">
+        <li><strong>Configuraciones de cálculo:</strong> parámetros introducidos por el usuario (distancias, tiempos objetivo, velocidades medias), almacenados localmente en el dispositivo.</li>
+        <li><strong>Preferencias de usuario:</strong> ajustes de la app como unidades de medida, tema visual y configuración de avisos, guardados localmente.</li>
+        <li><strong>Datos de uso anónimos:</strong> información agregada y anónima sobre el uso de las funciones de la app para mejorar el servicio, si el usuario ha aceptado el envío de estadísticas.</li>
+      </ul>
+      <div class="alert-box">
+        <span class="alert-icon">⚠️</span>
+        <span>Rally Codriver Calculator <strong>no recoge</strong> nombre, correo electrónico, número de teléfono, ubicación GPS ni ningún dato identificativo personal, a menos que el usuario lo facilite voluntariamente a través del formulario de contacto.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. USO -->
+  <section class="section" id="uso">
+    <div class="section-header">
+      <span class="section-icon">⚙️</span>
+      <h2>3. Finalidad del tratamiento</h2>
+    </div>
+    <div class="section-body">
+      <p>Los datos recogidos se usan exclusivamente para:</p>
+      <ul class="data-list">
+        <li>Proporcionar las funciones de cálculo de tiempos, velocidades medias y gestión de roadbook para copilotos de rally.</li>
+        <li>Guardar las preferencias y configuraciones del usuario para personalizar la experiencia dentro de la app.</li>
+        <li>Mejorar la calidad del servicio mediante estadísticas anónimas de uso (solo si el usuario lo consiente).</li>
+        <li>Responder a consultas o solicitudes enviadas voluntariamente por el usuario.</li>
+      </ul>
+      <div class="alert-box success-box">
+        <span class="alert-icon">✅</span>
+        <span>No utilizamos los datos para publicidad personalizada, perfilado comercial ni ningún otro fin distinto al descrito en esta política.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ALMACENAMIENTO -->
+  <section class="section" id="almacenamiento">
+    <div class="section-header">
+      <span class="section-icon">💾</span>
+      <h2>4. Almacenamiento local</h2>
+    </div>
+    <div class="section-body">
+      <p>Rally Codriver Calculator está diseñada para funcionar principalmente sin conexión a internet. El almacenamiento de datos se rige por los siguientes principios:</p>
+      <ul class="data-list">
+        <li>Todos los cálculos, configuraciones e historial de tramos se almacenan <strong>exclusivamente en el dispositivo del usuario</strong>.</li>
+        <li>Los datos guardados <strong>no se sincronizan con servidores externos</strong> ni se comparten con terceros sin el consentimiento explícito del usuario.</li>
+        <li>El almacenamiento se realiza en el espacio privado de la app, no accesible por otras aplicaciones instaladas en el dispositivo.</li>
+        <li>Al desinstalar la aplicación, todos los datos almacenados localmente se eliminan de forma automática e irreversible.</li>
+      </ul>
+      <div class="alert-box">
+        <span class="alert-icon">🔒</span>
+        <span>Tus datos de carrera y configuración nunca abandonan tu dispositivo salvo que decidas exportarlos manualmente o compartir tu diagnóstico con soporte.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TERCEROS -->
+  <section class="section" id="terceros">
+    <div class="section-header">
+      <span class="section-icon">🔗</span>
+      <h2>5. Servicios de terceros</h2>
+    </div>
+    <div class="section-body">
+      <p>Rally Codriver Calculator puede integrar los siguientes servicios de terceros, cada uno con su propia política de privacidad:</p>
+      <div class="third-party-list">
+        <div class="third-party-item">
+          <span class="tp-name">Google Play Services</span>
+          <span class="tp-desc">Necesario para el funcionamiento de la app en dispositivos Android. Consulta la política de privacidad de Google en policies.google.com.</span>
+        </div>
+        <div class="third-party-item">
+          <span class="tp-name">Firebase (Google)</span>
+          <span class="tp-desc">Utilizado opcionalmente para análisis anónimos de uso y gestión de actualizaciones. Los datos transmitidos son anónimos y agregados.</span>
+        </div>
+        <div class="third-party-item">
+          <span class="tp-name">Google AdMob</span>
+          <span class="tp-desc">La versión gratuita puede mostrar anuncios gestionados por AdMob. AdMob puede usar identificadores de publicidad del dispositivo conforme a su política. Puedes desactivar la personalización de anuncios en los ajustes de tu dispositivo.</span>
+        </div>
+      </div>
+      <p>No vendemos, cedemos ni compartimos datos personales con terceros con fines comerciales bajo ninguna circunstancia.</p>
+    </div>
+  </section>
+
+  <!-- 6. CONSERVACIÓN -->
+  <section class="section" id="conservacion">
+    <div class="section-header">
+      <span class="section-icon">🗓️</span>
+      <h2>6. Conservación de los datos</h2>
+    </div>
+    <div class="section-body">
+      <p>Los datos de configuración y cálculos se almacenan <strong>exclusivamente en el dispositivo del usuario</strong> y se eliminan automáticamente al desinstalar la aplicación.</p>
+      <p>Los datos de uso anónimos y agregados que puedan transmitirse a nuestros servidores se conservan durante un máximo de <strong>24 meses</strong>, tras los cuales son eliminados de forma definitiva.</p>
+      <p>En caso de que el usuario contacte con nosotros por correo electrónico, los datos facilitados se conservan el tiempo necesario para atender la solicitud y, como máximo, durante <strong>12 meses</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 7. DERECHOS -->
+  <section class="section" id="derechos">
+    <div class="section-header">
+      <span class="section-icon">⚖️</span>
+      <h2>7. Tus derechos</h2>
+    </div>
+    <div class="section-body">
+      <p>De acuerdo con el RGPD, el usuario tiene derecho a:</p>
+      <div class="rights-grid">
+        <div class="right-item"><strong>Acceso</strong><span>Conocer qué datos tenemos sobre ti.</span></div>
+        <div class="right-item"><strong>Rectificación</strong><span>Corregir datos inexactos o incompletos.</span></div>
+        <div class="right-item"><strong>Supresión</strong><span>Solicitar la eliminación («derecho al olvido»).</span></div>
+        <div class="right-item"><strong>Limitación</strong><span>Restringir el tratamiento de tus datos.</span></div>
+        <div class="right-item"><strong>Portabilidad</strong><span>Recibir tus datos en formato estructurado.</span></div>
+        <div class="right-item"><strong>Oposición</strong><span>Oponerte al tratamiento en ciertos casos.</span></div>
+      </div>
+      <p style="margin-top:18px;">Para ejercer cualquiera de estos derechos, contacta en <strong style="color:var(--accent)">privacy@menkaurasoft.com</strong>. Responderemos en un plazo máximo de 30 días. También puedes reclamar ante la AEPD en <strong style="color:var(--accent)">www.aepd.es</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 8. SEGURIDAD -->
+  <section class="section" id="seguridad">
+    <div class="section-header">
+      <span class="section-icon">🔐</span>
+      <h2>8. Seguridad</h2>
+    </div>
+    <div class="section-body">
+      <p>Aplicamos medidas técnicas y organizativas para proteger los datos frente a accesos no autorizados, pérdida, alteración o divulgación indebida:</p>
+      <ul class="data-list">
+        <li>Comunicaciones cifradas mediante <strong>HTTPS/TLS</strong> en todas las conexiones a servidores.</li>
+        <li>Datos almacenados en el <strong>almacenamiento privado de la app</strong>, no accesible por otras aplicaciones.</li>
+        <li>Revisión periódica de las medidas de seguridad implementadas.</li>
+        <li>Acceso restringido a datos del servidor únicamente al personal autorizado de Menkaura Soft.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9. MENORES -->
+  <section class="section" id="menores">
+    <div class="section-header">
+      <span class="section-icon">👶</span>
+      <h2>9. Menores de edad</h2>
+    </div>
+    <div class="section-body">
+      <p>Rally Codriver Calculator no está dirigida a menores de 14 años. No recogemos conscientemente datos personales de menores. Si eres padre, madre o tutor legal y crees que tu hijo ha proporcionado datos a través de la app, contáctanos en <strong style="color:var(--accent)">privacy@menkaurasoft.com</strong> y procederemos a su eliminación a la mayor brevedad posible.</p>
+    </div>
+  </section>
+
+  <!-- 10. CAMBIOS -->
+  <section class="section" id="cambios">
+    <div class="section-header">
+      <span class="section-icon">🔄</span>
+      <h2>10. Cambios en esta política</h2>
+    </div>
+    <div class="section-body">
+      <p>Menkaura Soft se reserva el derecho a modificar esta política de privacidad para adaptarla a cambios legislativos o de funcionalidades de la app. Cualquier modificación relevante será notificada mediante un aviso en la propia aplicación o mediante una notificación push.</p>
+      <p>Te recomendamos revisar esta página periódicamente. La fecha de la última actualización aparece siempre en la cabecera de este documento.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <div class="contact-card">
+    <h3>¿Tienes alguna duda?</h3>
+    <p>Estamos aquí para resolver cualquier pregunta sobre el tratamiento de tus datos.</p>
+    <a href="mailto:menkaurasoft@gmail.com" class="contact-btn">✉️ menkaurasoft@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 <strong>Menkaura Soft</strong> · Rally Codriver Calculator · Todos los derechos reservados<br>
+  Política de Privacidad conforme al RGPD y la LOPDGDD
+</footer>
+
+</body>
+</html>
