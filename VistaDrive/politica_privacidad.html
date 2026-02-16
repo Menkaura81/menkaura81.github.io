@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Política de Privacidad – VistaDrive</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --dark:   #1e2330;
+      --teal:   #2d8291;
+      --teal-light: #3fa0b0;
+      --green:  #5faa46;
+      --sky:    #b9e1eb;
+      --sun:    #f5b928;
+      --bg:     #f7f9fa;
+      --card:   #ffffff;
+      --text:   #2c3540;
+      --muted:  #6b7a88;
+      --border: #e2e8ed;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--dark);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .brand span { color: var(--teal-light); }
+
+    .header-badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sky);
+      border: 1px solid rgba(185,225,235,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2a3a4a 100%);
+      padding: 64px 32px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(45,130,145,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(95,170,70,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      color: #fff;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-date {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(45,130,145,0.25);
+      color: var(--sky);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(45,130,145,0.4);
+      position: relative;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 32px 80px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li { margin-bottom: 4px; }
+
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .toc-list a:hover {
+      color: var(--teal);
+      background: rgba(45,130,145,0.08);
+    }
+
+    .toc-num {
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--border);
+      color: var(--muted);
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .toc-list a:hover .toc-num {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    /* ── CONTENT ── */
+    .content { min-width: 0; }
+
+    .section {
+      margin-bottom: 48px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-teal  { background: rgba(45,130,145,0.12); }
+    .icon-green { background: rgba(95,170,70,0.12); }
+    .icon-sun   { background: rgba(245,185,40,0.12); }
+    .icon-dark  { background: rgba(30,35,45,0.08); }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    ul li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      font-weight: 300;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18px;
+      width: 8px; height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(45,130,145,0.06), rgba(95,170,70,0.04));
+      border: 1px solid rgba(45,130,145,0.2);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      font-weight: 400;
+      color: var(--dark);
+      margin: 0;
+    }
+
+    .warn-box {
+      background: rgba(245,185,40,0.07);
+      border: 1px solid rgba(245,185,40,0.3);
+      border-left: 4px solid var(--sun);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #7a6010;
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 36px;
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,0.55);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .contact-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      transition: all 0.25s;
+    }
+
+    .contact-card a:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,130,145,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      font-size: 13px;
+      padding: 24px 32px;
+    }
+
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 32px 20px 60px;
+      }
+      .sidebar { position: static; }
+      .hero { padding: 48px 20px 60px; }
+      .header-inner { padding: 14px 20px; }
+      .header-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">🚗</div>
+    <div class="brand">Vista<span>Drive</span></div>
+    <div class="header-badge">Privacidad</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Política de Privacidad</h1>
+  <p>Tu privacidad es fundamental para nosotros. Aquí explicamos de forma clara qué datos usamos y por qué.</p>
+  <div class="hero-date">Última actualización: febrero de 2025</div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contenido</div>
+    <ul class="toc-list">
+      <li><a href="#responsable"><span class="toc-num">1</span> Responsable</a></li>
+      <li><a href="#datos"><span class="toc-num">2</span> Datos recogidos</a></li>
+      <li><a href="#uso"><span class="toc-num">3</span> Uso de los datos</a></li>
+      <li><a href="#ubicacion"><span class="toc-num">4</span> Geolocalización</a></li>
+      <li><a href="#terceros"><span class="toc-num">5</span> Terceros</a></li>
+      <li><a href="#conservacion"><span class="toc-num">6</span> Conservación</a></li>
+      <li><a href="#derechos"><span class="toc-num">7</span> Tus derechos</a></li>
+      <li><a href="#seguridad"><span class="toc-num">8</span> Seguridad</a></li>
+      <li><a href="#menores"><span class="toc-num">9</span> Menores</a></li>
+      <li><a href="#cambios"><span class="toc-num">10</span> Cambios</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <section class="section" id="responsable">
+      <div class="section-header">
+        <div class="section-icon icon-dark">🏢</div>
+        <h2>1. Responsable del tratamiento</h2>
+      </div>
+      <p>El responsable del tratamiento de los datos personales de los usuarios de VistaDrive es:</p>
+      <div class="highlight-box">
+        <p><strong>Menkaura Soft</strong><br/>
+        Aplicación: VistaDrive<br/>
+        Contacto: <strong>privacy@menkaurasoft.com</strong></p>
+      </div>
+      <p>Al descargar y utilizar VistaDrive, el usuario acepta los términos descritos en esta política de privacidad, de conformidad con el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).</p>
+    </section>
+
+    <section class="section" id="datos">
+      <div class="section-header">
+        <div class="section-icon icon-teal">📋</div>
+        <h2>2. Datos que recogemos</h2>
+      </div>
+      <p>VistaDrive recoge únicamente los datos estrictamente necesarios para ofrecer el servicio de audioguías automáticas:</p>
+      <ul>
+        <li><strong>Datos de ubicación (GPS):</strong> para detectar los puntos de interés cercanos y activar las audioguías correspondientes.</li>
+        <li><strong>Datos de uso anónimos:</strong> información agregada y anónima sobre el uso de la app para mejorar el servicio (número de audioguías reproducidas, zonas visitadas de forma estadística).</li>
+        <li><strong>Preferencias de usuario:</strong> idioma seleccionado, velocidad de narración y configuraciones de la app, almacenadas localmente en el dispositivo.</li>
+      </ul>
+      <div class="warn-box">
+        ⚠️ VistaDrive <strong>no recoge</strong> nombre, correo electrónico, número de teléfono ni ningún dato identificativo personal, a menos que el usuario lo facilite voluntariamente a través del formulario de contacto.
+      </div>
+    </section>
+
+    <section class="section" id="uso">
+      <div class="section-header">
+        <div class="section-icon icon-green">⚙️</div>
+        <h2>3. Finalidad del tratamiento</h2>
+      </div>
+      <p>Los datos recogidos se usan exclusivamente para:</p>
+      <ul>
+        <li>Detectar la posición del usuario y activar las audioguías de los puntos de interés cercanos.</li>
+        <li>Mejorar la calidad del servicio mediante estadísticas anónimas de uso.</li>
+        <li>Guardar las preferencias del usuario para personalizar la experiencia dentro de la app.</li>
+        <li>Responder a consultas o solicitudes enviadas voluntariamente por el usuario.</li>
+      </ul>
+      <p>No utilizamos los datos para publicidad personalizada, perfilado comercial ni ningún otro fin distinto al descrito en esta política.</p>
+    </section>
+
+    <section class="section" id="ubicacion">
+      <div class="section-header">
+        <div class="section-icon icon-teal">📍</div>
+        <h2>4. Geolocalización</h2>
+      </div>
+      <p>VistaDrive requiere acceso a la ubicación del dispositivo para funcionar correctamente. El uso de la geolocalización se rige por los siguientes principios:</p>
+      <ul>
+        <li>La ubicación se obtiene <strong>solo mientras la app está en uso activo</strong> (primer plano), salvo que el usuario autorice expresamente el acceso en segundo plano.</li>
+        <li>La ubicación <strong>no se almacena en servidores externos</strong> ni se comparte con terceros.</li>
+        <li>El procesamiento de la ubicación se realiza <strong>localmente en el dispositivo</strong> para activar las audioguías correspondientes.</li>
+        <li>El usuario puede revocar el permiso de ubicación en cualquier momento desde los ajustes del sistema operativo, aunque esto impedirá el funcionamiento de la app.</li>
+      </ul>
+      <div class="highlight-box">
+        <p>🔒 Tu posición GPS nunca abandona tu dispositivo para fines de seguimiento. Solo se usa para comparar tu ubicación con la base de datos local de puntos de interés.</p>
+      </div>
+    </section>
+
+    <section class="section" id="terceros">
+      <div class="section-header">
+        <div class="section-icon icon-dark">🔗</div>
+        <h2>5. Servicios de terceros</h2>
+      </div>
+      <p>VistaDrive puede integrar los siguientes servicios de terceros, cada uno con su propia política de privacidad:</p>
+      <ul>
+        <li><strong>Google Play Services:</strong> necesario para el funcionamiento de la app en dispositivos Android. Consulta la política de privacidad de Google.</li>
+        <li><strong>Firebase (Google):</strong> utilizado opcionalmente para análisis anónimos de uso y gestión de actualizaciones del contenido. Los datos son anónimos y agregados.</li>
+        <li><strong>API de síntesis de voz del sistema:</strong> el motor de texto a voz del dispositivo (gestionado por el sistema operativo) se usa para la narración de audioguías.</li>
+      </ul>
+      <p>No vendemos, cedemos ni compartimos datos personales con terceros con fines comerciales bajo ninguna circunstancia.</p>
+    </section>
+
+    <section class="section" id="conservacion">
+      <div class="section-header">
+        <div class="section-icon icon-sun">🗓️</div>
+        <h2>6. Conservación de los datos</h2>
+      </div>
+      <p>Los datos de preferencias y configuración se almacenan <strong>exclusivamente en el dispositivo del usuario</strong> y se eliminan automáticamente al desinstalar la aplicación.</p>
+      <p>Los datos de uso anónimos y agregados que puedan transmitirse a nuestros servidores se conservan durante un máximo de <strong>24 meses</strong>, tras los cuales son eliminados de forma definitiva.</p>
+      <p>En caso de que el usuario contacte con nosotros por correo electrónico, los datos facilitados se conservan el tiempo necesario para atender la solicitud y, como máximo, durante <strong>12 meses</strong>.</p>
+    </section>
+
+    <section class="section" id="derechos">
+      <div class="section-header">
+        <div class="section-icon icon-teal">⚖️</div>
+        <h2>7. Tus derechos</h2>
+      </div>
+      <p>De acuerdo con el RGPD, el usuario tiene derecho a:</p>
+      <ul>
+        <li><strong>Acceso:</strong> conocer qué datos tenemos sobre ti.</li>
+        <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
+        <li><strong>Supresión:</strong> solicitar la eliminación de tus datos («derecho al olvido»).</li>
+        <li><strong>Limitación:</strong> solicitar la restricción del tratamiento de tus datos.</li>
+        <li><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y legible.</li>
+        <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos en determinadas circunstancias.</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, contacta con nosotros en <strong>privacy@menkaurasoft.com</strong>. Responderemos en un plazo máximo de 30 días. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) en <strong>www.aepd.es</strong>.</p>
+    </section>
+
+    <section class="section" id="seguridad">
+      <div class="section-header">
+        <div class="section-icon icon-green">🔐</div>
+        <h2>8. Seguridad</h2>
+      </div>
+      <p>Aplicamos medidas técnicas y organizativas adecuadas para proteger los datos frente a accesos no autorizados, pérdida, alteración o divulgación indebida, entre ellas:</p>
+      <ul>
+        <li>Comunicaciones cifradas mediante HTTPS/TLS en todas las conexiones a servidores.</li>
+        <li>Datos de preferencias almacenados localmente en el almacenamiento privado de la app, no accesible por otras aplicaciones.</li>
+        <li>Revisión periódica de las medidas de seguridad implementadas.</li>
+        <li>Acceso restringido a los datos del servidor únicamente al personal autorizado de Menkaura Soft.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="menores">
+      <div class="section-header">
+        <div class="section-icon icon-sun">👶</div>
+        <h2>9. Menores de edad</h2>
+      </div>
+      <p>VistaDrive no está dirigida a menores de 14 años. No recogemos conscientemente datos personales de menores. Si eres padre, madre o tutor legal y crees que tu hijo ha proporcionado datos personales a través de la app, contáctanos en <strong>privacy@menkaurasoft.com</strong> y procederemos a su eliminación a la mayor brevedad posible.</p>
+    </section>
+
+    <section class="section" id="cambios">
+      <div class="section-header">
+        <div class="section-icon icon-dark">🔄</div>
+        <h2>10. Cambios en esta política</h2>
+      </div>
+      <p>Menkaura Soft se reserva el derecho a modificar esta política de privacidad para adaptarla a cambios legislativos o de funcionalidades de la app. Cualquier modificación relevante será notificada mediante un aviso en la propia aplicación o mediante una notificación push.</p>
+      <p>Te recomendamos revisar esta página periódicamente. La fecha de la última actualización aparece siempre en la cabecera de este documento.</p>
+    </section>
+
+    <!-- CONTACT CARD -->
+    <div class="contact-card">
+      <h3>¿Tienes alguna duda?</h3>
+      <p>Estamos aquí para resolver cualquier pregunta sobre el tratamiento de tus datos.</p>
+      <a href="mailto:menkaurasoft@gmail.com">✉️ menkaurasoft@gmail.com</a>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Menkaura Soft</strong> · VistaDrive · Todos los derechos reservados</p>
+  <p style="margin-top:6px;">Política de Privacidad conforme al RGPD y la LOPDGDD</p>
+</footer>
+
+</body>
+</html>
