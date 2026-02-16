@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rally Codriver Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #E63020;
+      --yellow: #F5C800;
+      --dark: #0A0A0A;
+      --darker: #050505;
+      --gray: #1A1A1A;
+      --gray2: #2A2A2A;
+      --text: #E8E8E8;
+      --muted: #888;
+      --mono: 'Share Tech Mono', monospace;
+      --display: 'Barlow Condensed', sans-serif;
+      --body: 'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--darker);
+      color: var(--text);
+      font-family: var(--body);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(230, 48, 32, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230, 48, 32, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+    }
+
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to { background-position: 60px 60px; }
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 48, 32, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--red);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: 1px solid rgba(230, 48, 32, 0.4);
+      padding: 0.4rem 1rem;
+      margin-bottom: 2rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s 0.1s ease both;
+      filter: drop-shadow(0 0 20px rgba(245, 200, 0, 0.4));
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    .hero h1 .accent { color: var(--red); }
+    .hero h1 .sub {
+      display: block;
+      font-size: 0.4em;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+    }
+
+    .hero-desc {
+      font-family: var(--body);
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      text-align: center;
+      margin-top: 2rem;
+      line-height: 1.7;
+      animation: fadeDown 0.8s 0.35s ease both;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.5rem;
+      animation: fadeDown 0.8s 0.45s ease both;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      background: var(--gray);
+      border: 1px solid var(--gray2);
+      color: var(--muted);
+      padding: 0.4rem 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .badge.hot { border-color: rgba(230, 48, 32, 0.5); color: var(--red); }
+    .badge.gold { border-color: rgba(245, 200, 0, 0.5); color: var(--yellow); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      animation: fadeDown 0.8s 0.7s ease both, bounce 2s 1.5s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(var(--red), transparent);
+    }
+
+    /* ── SCREENSHOT ── */
+    .screenshot-section {
+      display: flex;
+      justify-content: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+    }
+
+    .phone-frame {
+      position: relative;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      background: radial-gradient(ellipse, rgba(230, 48, 32, 0.15) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .phone-frame img {
+      max-width: 280px;
+      width: 100%;
+      border: 2px solid var(--gray2);
+      box-shadow:
+        0 0 0 1px rgba(230, 48, 32, 0.2),
+        0 30px 80px rgba(0,0,0,0.8),
+        0 0 60px rgba(230, 48, 32, 0.08);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--red);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 3rem;
+    }
+
+    .section-title span { color: var(--red); }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--gray2);
+      border: 1px solid var(--gray2);
+    }
+
+    .feature-card {
+      background: var(--dark);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: #111; }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── HOW TO USE ── */
+    .steps {
+      display: grid;
+      gap: 1px;
+      background: var(--gray2);
+      border: 1px solid var(--gray2);
+    }
+
+    .step {
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+    }
+
+    .step-num {
+      background: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--red);
+      padding: 2rem;
+      border-right: 1px solid var(--gray2);
+    }
+
+    .step-content {
+      padding: 2rem;
+    }
+
+    .step-content h3 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── LANGUAGES ── */
+    .langs {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .lang-chip {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      background: var(--gray);
+      border: 1px solid var(--gray2);
+      padding: 0.6rem 1.5rem;
+      letter-spacing: 0.08em;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .lang-chip:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .lang-chip::before {
+      content: attr(data-flag);
+      margin-right: 0.5rem;
+    }
+
+    /* ── PRIVACY ── */
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--gray2);
+      border: 1px solid var(--gray2);
+      margin-bottom: 3rem;
+    }
+
+    .privacy-item {
+      background: var(--dark);
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid #2A6A2A;
+      background: rgba(42, 106, 42, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 0.7rem;
+      color: #4CAF50;
+    }
+
+    .privacy-item span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .privacy-note {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--gray);
+      border-left: 3px solid var(--red);
+      padding: 1.2rem 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── LICENSE ── */
+    .license-block {
+      background: var(--gray);
+      border: 1px solid var(--gray2);
+      padding: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .license-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 12px rgba(245, 200, 0, 0.3));
+    }
+
+    .license-text h3 {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--yellow);
+    }
+
+    .license-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--gray2);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand span { color: var(--red); }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray2), transparent);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: var(--red);
+      padding: 0.6rem 0;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: white;
+      padding: 0 3rem;
+    }
+
+    .ticker-sep {
+      color: rgba(255,255,255,0.4);
+      padding: 0 0.5rem;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .step { grid-template-columns: 56px 1fr; }
+      .step-num { font-size: 1.8rem; padding: 1.5rem 1rem; }
+      .license-block { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">⏱ Rally Codriver Calculator</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Tiempo real</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Sin conexión</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">ES · EN · FR</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Control de tiempos</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Precisión total</span>
+      <span class="ticker-sep">///</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">⏱ Rally Codriver Calculator</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Tiempo real</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Sin conexión</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">ES · EN · FR</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Control de tiempos</span>
+      <span class="ticker-sep">///</span>
+      <span class="ticker-item">Precisión total</span>
+      <span class="ticker-sep">///</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-tag">v1.0 — Android App</div>
+    <div class="hero-icon">🏁</div>
+    <h1>
+      <span class="sub">Rally</span>
+      <span class="accent">Codriver</span><br>Calculator
+    </h1>
+    <p class="hero-desc">
+      Calcula al instante la <strong>hora de llegada al siguiente control de tiempo</strong> y sigue el cuenta atrás en vivo. Diseñado para funcionar bajo la presión del rally.
+    </p>
+    <div class="hero-badges">
+      <span class="badge hot">Android</span>
+      <span class="badge gold">MIT License</span>
+      <span class="badge">Offline</span>
+      <span class="badge">Multi-idioma</span>
+    </div>
+
+    <div class="scroll-hint">SCROLL</div>
+  </section>
+
+  <!-- SCREENSHOT -->
+  <div class="screenshot-section">
+    <div class="phone-frame">
+      <img
+        src="https://raw.githubusercontent.com/Menkaura81/home/main/Captura%20de%20pantalla.png"
+        alt="Rally Codriver Calculator – captura de pantalla"
+      />
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-label">// 01 — Funcionalidades</div>
+    <h2 class="section-title">Lo que incluye <span>la app</span></h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⏱</span>
+        <h3>Cálculo instantáneo</h3>
+        <p>Obtén la hora exacta de llegada al siguiente control en cuestión de segundos.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📐</span>
+        <h3>Entrada simple</h3>
+        <p>Introduce la hora de salida y el tiempo asignado. Sin complicaciones.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔔</span>
+        <h3>Cuenta atrás en vivo</h3>
+        <p>Temporizador en tiempo real que cuenta hasta la llegada al control.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <h3>Multi-idioma</h3>
+        <p>Disponible en inglés, español y francés para equipos internacionales.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>Resultados claros</h3>
+        <p>Interfaz legible y de alto contraste, pensada para condiciones exigentes.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛠</span>
+        <h3>Interfaz intuitiva</h3>
+        <p>Diseñada para ser usada con rapidez bajo la presión de una etapa.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW TO USE -->
+  <section class="section">
+    <div class="section-label">// 02 — Uso</div>
+    <h2 class="section-title">Cómo <span>usarla</span></h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Hora de salida real</h3>
+          <p>Introduce la hora real de salida desde el control actual.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Tiempo asignado</h3>
+          <p>Introduce el tiempo asignado para llegar al siguiente control.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Hora de llegada calculada</h3>
+          <p>Obtén automáticamente la hora exacta a la que debes llegar.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Cuenta atrás en vivo</h3>
+          <p>Sigue el temporizador en tiempo real hasta la llegada al control.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <div style="margin-top: 3rem;">
+      <div class="section-label">// Idiomas disponibles</div>
+      <div class="langs">
+        <div class="lang-chip" data-flag="🇪🇸">Español</div>
+        <div class="lang-chip" data-flag="🇬🇧">English</div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRIVACY -->
+  <section class="section">
+    <div class="section-label">// 03 — Privacidad y permisos</div>
+    <h2 class="section-title">Tu privacidad <span>primero</span></h2>
+
+    <div class="privacy-grid">
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>No accede a tu ubicación</span>
+      </div>
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>No usa cámara ni micrófono</span>
+      </div>
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>No lee contactos ni almacenamiento</span>
+      </div>
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>No recopila datos de red</span>
+      </div>
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>No rastrea usuarios</span>
+      </div>
+      <div class="privacy-item">
+        <div class="check">✓</div>
+        <span>Funciona 100% sin conexión</span>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      Esta aplicación <strong>no recopila, almacena, comparte ni transmite ningún dato personal</strong>. Todos los cálculos se realizan localmente en el dispositivo. No requiere cuentas de usuario, no usa servicios analíticos y no se conecta a servidores externos.
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Rally <span>Codriver</span> Calculator</div>
+      <p>Diseñado para copiloto de rally · MIT License · Android</p>
+    </div>
+  </footer>
+
+</body>
+</html>
