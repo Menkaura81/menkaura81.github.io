@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classic Rally Tripmaster — Co-driver's Handbook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --white: #f4f2ec;
+    --mid: #c8c4ba;
+    --ink: #1a1a1a;
+    --rule: #333;
+  }
+
+  body {
+    font-family: 'Barlow', Helvetica, Arial, sans-serif;
+    background: #e8e4da;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    width: 210mm;
+    min-height: 148mm;
+    margin: 16px auto;
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--black);
+    color: var(--white);
+    min-height: 296mm;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0;
+  }
+
+  .cover-body {
+    padding: 24mm 20mm 12mm 20mm;
+    display: flex;
+    flex-direction: column;
+    gap: 10mm;
+  }
+
+  .cover h1 {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    max-width: 160mm;
+  }
+
+  .cover .subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #aaa;
+    letter-spacing: 0.3px;
+    max-width: 100mm;
+    line-height: 1.5;
+  }
+
+  .cover-devices {
+    display: flex;
+    gap: 10mm;
+    align-items: flex-end;
+    margin-top: auto;
+    padding: 0 20mm 20mm 20mm;
+    border-top: 1px solid #333;
+    padding-top: 10mm;
+    flex-wrap: wrap;
+  }
+
+  .device-card {
+    border: 1px solid #444;
+    padding: 5mm 6mm;
+    flex: 1;
+    min-width: 55mm;
+  }
+
+  .device-card h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 2mm;
+  }
+
+  .device-card p {
+    font-size: 12px;
+    color: #ddd;
+    line-height: 1.4;
+  }
+
+  /* ── INNER PAGES ── */
+  .inner {
+    padding: 14mm 16mm 14mm 16mm;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10mm;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8mm;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h2.page-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 8mm;
+    text-transform: lowercase;
+  }
+
+  h2.page-title span {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 2mm;
+  }
+
+  h2.section-head {
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.3px;
+    line-height: 1;
+    margin-bottom: 5mm;
+    border-top: 3px solid var(--ink);
+    padding-top: 3mm;
+  }
+
+  h3.sub-head {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 3mm;
+    margin-top: 5mm;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.55;
+    margin-bottom: 3mm;
+    text-align: justify;
+  }
+
+  p.lead {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ── RULES ── */
+  hr {
+    border: none;
+    border-top: 1px solid #bbb;
+    margin: 6mm 0;
+  }
+
+  hr.heavy {
+    border-top: 3px solid var(--ink);
+    margin: 8mm 0;
+  }
+
+  /* ── DIAGRAM BOX ── */
+  .diagram-box {
+    border: 1px solid #999;
+    padding: 6mm;
+    margin: 6mm 0;
+    position: relative;
+    background: #f9f7f2;
+  }
+
+  /* ── DEVICE ILLUSTRATION ── */
+  .device-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8mm 0;
+  }
+
+  .tripmaster-svg-wrap {
+    position: relative;
+    width: 80mm;
+  }
+
+  /* SVG device face */
+  .tripmaster-face {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── CALLOUT NUMBERS ── */
+  .callout-list {
+    list-style: none;
+    padding: 0;
+    margin: 4mm 0;
+  }
+
+  .callout-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    margin-bottom: 3mm;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .callout-list li .num {
+    flex-shrink: 0;
+    width: 5mm;
+    height: 5mm;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--white);
+    font-size: 9px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* ── INSTRUCTIONS LIST ── */
+  .instructions {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 4mm 0;
+  }
+
+  .instructions li {
+    counter-increment: step;
+    display: flex;
+    gap: 3.5mm;
+    margin-bottom: 4mm;
+    font-size: 12.5px;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  .instructions li::before {
+    content: counter(step) ".";
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    width: 5mm;
+    padding-top: 1px;
+  }
+
+  /* ── FEATURE BOXES ── */
+  .feature-box {
+    border-top: 2px solid var(--ink);
+    padding-top: 3mm;
+    margin-bottom: 5mm;
+  }
+
+  .feature-box .label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 1.5mm;
+  }
+
+  .feature-box .value {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .feature-box p {
+    font-size: 12px;
+    margin-top: 1mm;
+    margin-bottom: 0;
+    color: #444;
+  }
+
+  /* ── APP SECTION ── */
+  .app-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 8mm 16mm;
+    margin: -14mm -16mm 10mm -16mm;
+  }
+
+  .app-header h2 {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .app-header p {
+    font-size: 12px;
+    color: #aaa;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  /* ── GPS INDICATOR ── */
+  .mode-strip {
+    display: flex;
+    gap: 0;
+    margin: 5mm 0;
+    border: 1px solid #bbb;
+  }
+
+  .mode-cell {
+    flex: 1;
+    padding: 3mm 4mm;
+    text-align: center;
+    border-right: 1px solid #bbb;
+    font-size: 11px;
+  }
+
+  .mode-cell:last-child { border-right: none; }
+
+  .mode-cell .sym {
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+
+  .mode-cell .sym.plus  { color: #1a6b1a; }
+  .mode-cell .sym.zero  { color: #555; }
+  .mode-cell .sym.minus { color: #8b1a1a; }
+
+  .mode-cell .desc {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    font-weight: 700;
+  }
+
+  /* ── SPECS TABLE ── */
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 4mm 0;
+  }
+
+  .specs-table td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  .specs-table td:first-child {
+    font-weight: 700;
+    width: 42%;
+    color: #444;
+  }
+
+  /* ── FOOTER BAND ── */
+  .page-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 8mm;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    padding: 0 16mm;
+    justify-content: space-between;
+  }
+
+  .page-footer span {
+    color: #aaa;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     PAGE 1 — COVER
+════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-body">
+    <div>
+      <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#777;margin-bottom:4mm;">The Holda</p>
+      <h1>Co&#8209;driver's<br>Handbook</h1>
+    </div>
+    <p class="subtitle">
+      Instrument &amp; Instructions for the<br>
+      Classic Rally Tripmaster for Android
+    </p>
+
+    <!-- Schematic SVG of the instrument -->
+    <div style="margin-top:auto;">
+      <svg viewBox="0 0 320 140" width="200" style="display:block;margin-top:8mm;">
+        <!-- instrument body -->
+        <rect x="10" y="10" width="300" height="120" rx="8" ry="8" fill="#1e1e1e" stroke="#555" stroke-width="1.5"/>
+        <!-- display window -->
+        <rect x="30" y="22" width="185" height="55" rx="3" fill="#111" stroke="#444" stroke-width="1"/>
+        <!-- digit cells -->
+        <rect x="35" y="27" width="30" height="45" rx="2" fill="#0a0a0a" stroke="#333"/>
+        <rect x="68" y="27" width="30" height="45" rx="2" fill="#0a0a0a" stroke="#333"/>
+        <rect x="101" y="27" width="30" height="45" rx="2" fill="#0a0a0a" stroke="#333"/>
+        <!-- decimal dot -->
+        <circle cx="137" cy="65" r="2.5" fill="#555"/>
+        <rect x="140" y="27" width="30" height="45" rx="2" fill="#0a0a0a" stroke="#333"/>
+        <rect x="173" y="27" width="38" height="45" rx="2" fill="#0a0a0a" stroke="#333"/>
+        <!-- digit text -->
+        <text x="50"  y="59" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="#e0d090" text-anchor="middle">0</text>
+        <text x="83"  y="59" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="#e0d090" text-anchor="middle">0</text>
+        <text x="116" y="59" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="#e0d090" text-anchor="middle">0</text>
+        <text x="155" y="59" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="#e0d090" text-anchor="middle">0</text>
+        <text x="192" y="59" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="#e0d090" text-anchor="middle">0</text>
+        <!-- brand label -->
+        <text x="30" y="92" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#777" letter-spacing="1">TRIPMASTER</text>
+        <text x="170" y="92" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#555" letter-spacing="0.5" text-anchor="end">holda</text>
+        <!-- knob reset (top-right) -->
+        <circle cx="253" cy="49" r="18" fill="#2a2a2a" stroke="#555" stroke-width="1.5"/>
+        <circle cx="253" cy="49" r="13" fill="none" stroke="#444" stroke-width="1" stroke-dasharray="3,2"/>
+        <circle cx="253" cy="49" r="4" fill="#555"/>
+        <text x="253" y="83" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#555" text-anchor="middle" letter-spacing="0.5">RESET</text>
+        <!-- knob mode (bottom-center) -->
+        <circle cx="148" cy="115" r="16" fill="#2a2a2a" stroke="#555" stroke-width="1.5"/>
+        <circle cx="148" cy="115" r="11" fill="none" stroke="#444" stroke-width="0.8" stroke-dasharray="2.5,2"/>
+        <line x1="148" y1="115" x2="141" y2="109" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+        <text x="113" y="132" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#4a8a4a">+</text>
+        <text x="145" y="132" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">0</text>
+        <text x="177" y="132" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#8a4a4a">−</text>
+        <!-- side knob indicator -->
+        <rect x="290" y="30" width="14" height="90" rx="5" fill="#252525" stroke="#555" stroke-width="1"/>
+        <circle cx="297" cy="75" r="7" fill="#2a2a2a" stroke="#555" stroke-width="1.2"/>
+        <circle cx="297" cy="75" r="3" fill="#444"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="cover-devices">
+    <div class="device-card">
+      <h3>Original Instrument</h3>
+      <p>Mechanical odometer for rally co-drivers. Counts hundredths of km via drive cable.</p>
+    </div>
+    <div class="device-card">
+      <h3>App Version</h3>
+      <p>Pixel-faithful Android simulation. Uses GPS for distance tracking. No cables required.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 2 — ABOUT THE INSTRUMENT
+════════════════════════════════════════════ -->
+<div class="page inner" style="padding-bottom:18mm;">
+
+  <h2 class="page-title">
+    <span>Holda</span>
+    holda tripmaster
+  </h2>
+
+  <div class="two-col">
+    <div>
+      <p class="lead">
+        Odometer registering in hundredths of a kilometre. Large illuminated figures.
+        Instantaneous zero setting. Setting and subtraction can both be carried out while driving.
+      </p>
+      <p>
+        The Tripmaster can be fitted to all makes of cars. The adjustment gear permits a tolerance of
+        ±&nbsp;0.4&thinsp;%. The instrument is supplied complete with fitting angle, T-gear and driving cable.
+      </p>
+      <p>
+        The zero-setting mechanism has been improved through a better illumination design and
+        reflection-free glass. The figures are 6.2&thinsp;mm high. The knob for addition, subtraction
+        and neutral has been given a new flexible design for positive action.
+      </p>
+      <hr>
+      <h3 class="sub-head">New features</h3>
+      <p>
+        Clearer figure reading. Better illumination. New reflection-free glass.
+        New design makes the zero-setting knob quicker and easier to operate.
+        Positive action on all controls.
+      </p>
+    </div>
+    <div>
+      <div class="diagram-box">
+        <!-- Labelled diagram -->
+        <svg viewBox="0 0 240 220" width="100%" style="display:block;">
+          <!-- body -->
+          <rect x="20" y="15" width="165" height="130" rx="6" fill="#1a1a1a" stroke="#666" stroke-width="1.5"/>
+          <!-- display -->
+          <rect x="30" y="24" width="125" height="50" rx="2" fill="#0d0d0d" stroke="#555"/>
+          <!-- digits -->
+          <rect x="34"  y="28" width="20" height="42" rx="1" fill="#080808" stroke="#333"/>
+          <rect x="57"  y="28" width="20" height="42" rx="1" fill="#080808" stroke="#333"/>
+          <rect x="80"  y="28" width="20" height="42" rx="1" fill="#080808" stroke="#333"/>
+          <circle cx="104" cy="64" r="2" fill="#555"/>
+          <rect x="107" y="28" width="20" height="42" rx="1" fill="#080808" stroke="#333"/>
+          <rect x="130" y="28" width="20" height="42" rx="1" fill="#080808" stroke="#333"/>
+          <text x="44"  y="57" font-family="Courier New" font-size="20" font-weight="bold" fill="#d4c070" text-anchor="middle">0</text>
+          <text x="67"  y="57" font-family="Courier New" font-size="20" font-weight="bold" fill="#d4c070" text-anchor="middle">0</text>
+          <text x="90"  y="57" font-family="Courier New" font-size="20" font-weight="bold" fill="#d4c070" text-anchor="middle">0</text>
+          <text x="117" y="57" font-family="Courier New" font-size="20" font-weight="bold" fill="#d4c070" text-anchor="middle">0</text>
+          <text x="140" y="57" font-family="Courier New" font-size="20" font-weight="bold" fill="#d4c070" text-anchor="middle">0</text>
+          <!-- brand -->
+          <text x="30" y="84" font-family="Helvetica, Arial" font-size="6" font-weight="bold" fill="#555" letter-spacing="1">TRIPMASTER</text>
+          <text x="152" y="84" font-family="Helvetica, Arial" font-size="6" fill="#444" text-anchor="end">holda</text>
+          <!-- knob reset -->
+          <circle cx="170" cy="49" r="15" fill="#222" stroke="#666" stroke-width="1.5"/>
+          <circle cx="170" cy="49" r="10" fill="none" stroke="#444" stroke-dasharray="2.5,2"/>
+          <circle cx="170" cy="49" r="3.5" fill="#555"/>
+          <!-- knob tristate -->
+          <circle cx="102" cy="115" r="14" fill="#222" stroke="#666" stroke-width="1.5"/>
+          <circle cx="102" cy="115" r="9.5" fill="none" stroke="#444" stroke-dasharray="2,2"/>
+          <line x1="102" y1="115" x2="95" y2="109" stroke="#888" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- labels -->
+          <text x="73"  y="136" font-family="Helvetica,Arial" font-size="7" font-weight="bold" fill="#4a8a4a">+</text>
+          <text x="99"  y="136" font-family="Helvetica,Arial" font-size="7" fill="#777">0</text>
+          <text x="127" y="136" font-family="Helvetica,Arial" font-size="7" font-weight="bold" fill="#8a4a4a">−</text>
+          <!-- side knob -->
+          <rect x="196" y="20" width="12" height="120" rx="4" fill="#1a1a1a" stroke="#666" stroke-width="1.2"/>
+          <circle cx="202" cy="80" r="7" fill="#222" stroke="#666" stroke-width="1.2"/>
+          <circle cx="202" cy="80" r="3" fill="#444"/>
+
+          <!-- callout lines -->
+          <!-- 1 -> tristate -->
+          <line x1="102" y1="115" x2="30" y2="175" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <circle cx="22" cy="175" r="7" fill="#1a1a1a"/>
+          <text x="22" y="178" font-family="Helvetica,Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">1</text>
+
+          <!-- 2 -> reset knob -->
+          <line x1="170" y1="49" x2="225" y2="30" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <circle cx="232" cy="28" r="7" fill="#1a1a1a"/>
+          <text x="232" y="31" font-family="Helvetica,Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">2</text>
+
+          <!-- 3 -> side knob -->
+          <line x1="202" y1="80" x2="225" y2="95" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <circle cx="232" cy="95" r="7" fill="#1a1a1a"/>
+          <text x="232" y="98" font-family="Helvetica,Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">3</text>
+
+          <!-- 4 -> digits -->
+          <line x1="90" y1="28" x2="65" y2="8" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <circle cx="58" cy="6" r="7" fill="#1a1a1a"/>
+          <text x="58" y="9" font-family="Helvetica,Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">4</text>
+        </svg>
+      </div>
+
+      <ul class="callout-list">
+        <li><span class="num">1</span><span>Control knob for addition (+), neutral (0) and subtraction (−). GPS mode selector.</span></li>
+        <li><span class="num">2</span><span>Knob for zero setting. Tap to reset counter to 000.00 instantly.</span></li>
+        <li><span class="num">3</span><span>Side knob for manual distance adjustment. Swipe up/down.</span></li>
+        <li><span class="num">4</span><span>Figure counter. Individual digit control by tap / long-press.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Classic Rally Tripmaster</span>
+    <span>Instrument Description</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 3 — APP INSTRUCTIONS
+════════════════════════════════════════════ -->
+<div class="page inner" style="padding-bottom:18mm;">
+
+  <div class="app-header">
+    <h2>Classic Rally Tripmaster</h2>
+    <p>Android application — GPS-based distance instrument for rally co-drivers</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h2 class="section-head">Purpose</h2>
+      <p>
+        The Classic Rally Tripmaster is a faithful simulation of the classic mechanical Classic Rally Tripmaster
+        used by co-drivers in vintage and historic rally motorsport.
+      </p>
+      <p>
+        Instead of a mechanical drive cable connected to the gearbox, the app uses the phone's GPS
+        receiver to measure distance with high accuracy. The instrument panel is drawn pixel-for-pixel
+        to replicate the look and feel of the original analogue instrument.
+      </p>
+      <p>
+        The app is designed for use on the co-driver's side of a rally car — mounted in portrait
+        orientation, readable at a glance, and operable with gloves.
+      </p>
+
+      <hr>
+
+      <h3 class="sub-head">GPS Tracking</h3>
+      <p>
+        The app requests GPS updates at the highest available accuracy. In practice, consumer hardware
+        delivers approximately one fix per second (1&thinsp;Hz). Readings with an accuracy worse than
+        20&thinsp;m are discarded; movements smaller than 2&thinsp;m are ignored to suppress noise.
+      </p>
+      <p>
+        GPS distance accumulation is active only when the mode knob is in position <strong>+</strong>
+        or <strong>−</strong>. In position <strong>0</strong> the GPS is paused and the counter holds
+        its value.
+      </p>
+
+      <hr>
+
+      <h3 class="sub-head">Technical Specifications</h3>
+      <table class="specs-table">
+        <tr><td>Display range</td><td>000.00 – 999.99 km</td></tr>
+        <tr><td>Resolution</td><td>0.01 km (10 m)</td></tr>
+        <tr><td>Manual step</td><td>0.01 km per swipe tick</td></tr>
+        <tr><td>GPS min. accuracy</td><td>20 m filter</td></tr>
+        <tr><td>GPS noise gate</td><td>&lt; 2 m ignored</td></tr>
+        <tr><td>Minimum Android</td><td>8.0 (API 26)</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <h2 class="section-head">Controls</h2>
+
+      <div class="feature-box">
+        <div class="label">Control 1 &mdash; Mode Knob (bottom)</div>
+        <div class="value">GPS Mode Selector</div>
+        <p>
+          Three-position rotary knob. Tap to cycle through positions.
+          The active label (+, 0, −) is highlighted on the panel.
+        </p>
+      </div>
+
+      <div class="mode-strip">
+        <div class="mode-cell">
+          <span class="sym plus">+</span>
+          <span class="desc">Add</span>
+          <span style="font-size:10px;color:#555;display:block;margin-top:1mm;">GPS increments<br>the counter</span>
+        </div>
+        <div class="mode-cell">
+          <span class="sym zero">0</span>
+          <span class="desc">Neutral</span>
+          <span style="font-size:10px;color:#555;display:block;margin-top:1mm;">GPS paused,<br>counter holds</span>
+        </div>
+        <div class="mode-cell">
+          <span class="sym minus">−</span>
+          <span class="desc">Subtract</span>
+          <span style="font-size:10px;color:#555;display:block;margin-top:1mm;">GPS decrements<br>the counter</span>
+        </div>
+      </div>
+
+      <div class="feature-box" style="margin-top:5mm;">
+        <div class="label">Control 2 &mdash; Reset Knob (top right)</div>
+        <div class="value">Instantaneous Zero Setting</div>
+        <p>
+          Tap to reset all figures to 000.00. Equivalent to pulling the zero-setting knob
+          on the mechanical instrument. Action is immediate.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="label">Control 3 &mdash; Side Knob (right edge)</div>
+        <div class="value">Manual Distance Adjustment</div>
+        <p>
+          Swipe <strong>up</strong> to add 0.01&thinsp;km per tick.<br>
+          Swipe <strong>down</strong> to subtract 0.01&thinsp;km per tick.<br>
+          The touch area extends the full height of the screen to the right of the panel.
+          Use to correct the counter against a known distance or roadbook tulip.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="label">Control 4 &mdash; Figure Counter (digits)</div>
+        <div class="value">Individual Digit Adjustment</div>
+        <p>
+          Each digit can be adjusted individually.<br>
+          <strong>Tap</strong> a digit to increment it by 1.<br>
+          <strong>Long-press</strong> a digit to decrement it by 1.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Classic Rally Tripmaster</span>
+    <span>Controls &amp; Purpose</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 4 — OPERATING INSTRUCTIONS
+════════════════════════════════════════════ -->
+<div class="page inner" style="padding-bottom:18mm;">
+
+  <h2 class="section-head">Operating Instructions</h2>
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub-head">Measuring a Distance</h3>
+      <ol class="instructions">
+        <li>Reset the counter to zero by tapping the <strong>Reset Knob</strong> (top right).</li>
+        <li>Set the <strong>Mode Knob</strong> to position <strong>+</strong>. The "+" label on the panel illuminates.</li>
+        <li>Begin driving. The GPS will accumulate distance and advance the counter automatically.</li>
+        <li>To pause accumulation — at a service park or whilst stationary — set the Mode Knob to <strong>0</strong>. The counter holds its value.</li>
+        <li>Resume by returning the Mode Knob to <strong>+</strong>.</li>
+        <li>When not in use, leave the Mode Knob at <strong>0</strong>.</li>
+      </ol>
+
+      <hr>
+
+      <h3 class="sub-head">Measuring Remaining Distance</h3>
+      <ol class="instructions">
+        <li>Set the counter to the total distance to be covered using the <strong>Side Knob</strong> or individual <strong>digit tap</strong>.</li>
+        <li>Set the <strong>Mode Knob</strong> to <strong>−</strong>. The "−" label illuminates.</li>
+        <li>Begin driving. The counter counts down towards zero.</li>
+        <li>When the counter reaches 000.00, the set distance has been covered.</li>
+      </ol>
+
+      <hr>
+
+      <h3 class="sub-head">Manual Correction</h3>
+      <ol class="instructions">
+        <li>At any time, use the <strong>Side Knob</strong> to fine-correct the counter against a known distance marker or roadbook reference.</li>
+        <li>Swipe up to add distance; swipe down to subtract.</li>
+        <li>Each swipe tick changes the reading by exactly 0.01&thinsp;km (10&thinsp;m).</li>
+        <li>The Mode Knob position does not affect manual correction — the side knob always works.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h3 class="sub-head">Setting a Predetermined Distance</h3>
+      <ol class="instructions">
+        <li>With the Mode Knob at <strong>0</strong>, use the <strong>Side Knob</strong> to dial in the starting distance from the roadbook.</li>
+        <li>Alternatively, tap individual <strong>counter digits</strong> to set each figure. Tap = +1, long-press = −1.</li>
+        <li>Set the Mode Knob to <strong>+</strong> or <strong>−</strong> as appropriate before the stage starts.</li>
+      </ol>
+
+      <hr>
+
+      <h3 class="sub-head">Notes on GPS Accuracy</h3>
+      <p>
+        Consumer GPS hardware typically provides one position fix per second regardless of the
+        update rate requested by the app. For best accuracy:
+      </p>
+      <ul style="font-size:12.5px;line-height:1.6;padding-left:5mm;margin-bottom:3mm;">
+        <li>Allow the phone to acquire a strong GPS signal before the stage.</li>
+        <li>Keep the phone with a clear view of the sky. Avoid placing it flat on the dashboard where the roof obstructs satellites.</li>
+        <li>The 20&thinsp;m accuracy filter rejects poor-quality fixes automatically. In heavy tree cover or tunnels, the counter will pause momentarily.</li>
+        <li>GPS measures the path actually driven, including curves — just like a drive cable on the original instrument.</li>
+      </ul>
+
+      <hr>
+
+      <h3 class="sub-head">Permissions Required</h3>
+      <table class="specs-table">
+        <tr>
+          <td>Location (fine)</td>
+          <td>Required for GPS distance tracking. Without this permission the counter cannot accumulate distance automatically.</td>
+        </tr>
+        <tr>
+          <td>Location (background)</td>
+          <td>Not required. The app only tracks when it is visible on screen.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Classic Rally Tripmaster</span>
+    <span>Operating Instructions</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 5 — QUICK REFERENCE
+════════════════════════════════════════════ -->
+<div class="page inner" style="padding-bottom:18mm;">
+
+  <h2 class="section-head">Quick Reference</h2>
+
+  <div class="three-col" style="margin-bottom:8mm;">
+
+    <div style="border:1px solid #bbb;padding:5mm;">
+      <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:3mm;">Reset to Zero</p>
+      <p style="font-size:13px;margin-bottom:2mm;text-align:left;">
+        Tap the <strong>top-right knob</strong> (knurled, circular).<br>
+        Counter goes immediately to 000.00.
+      </p>
+      <svg viewBox="0 0 60 60" width="50" style="display:block;margin:3mm auto 0;">
+        <circle cx="30" cy="30" r="26" fill="#1a1a1a" stroke="#666" stroke-width="1.5"/>
+        <circle cx="30" cy="30" r="18" fill="none" stroke="#555" stroke-dasharray="3,2"/>
+        <circle cx="30" cy="30" r="6" fill="#555"/>
+        <text x="30" y="54" font-family="Helvetica,Arial" font-size="7" fill="#888" text-anchor="middle">TAP</text>
+      </svg>
+    </div>
+
+    <div style="border:1px solid #bbb;padding:5mm;">
+      <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:3mm;">Mode Selection</p>
+      <p style="font-size:13px;margin-bottom:2mm;text-align:left;">
+        Tap the <strong>bottom knob</strong> to cycle:<br>
+        <strong style="color:#2a6b2a;">+</strong> Add &rarr;
+        <strong style="color:#555;">0</strong> Pause &rarr;
+        <strong style="color:#8b2a2a;">−</strong> Subtract
+      </p>
+      <svg viewBox="0 0 60 60" width="50" style="display:block;margin:3mm auto 0;">
+        <circle cx="30" cy="30" r="26" fill="#1a1a1a" stroke="#666" stroke-width="1.5"/>
+        <circle cx="30" cy="30" r="18" fill="none" stroke="#555" stroke-dasharray="3,2"/>
+        <line x1="30" y1="30" x2="20" y2="22" stroke="#aaa" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="13" y="52" font-family="Helvetica,Arial" font-size="11" font-weight="bold" fill="#4a8a4a">+</text>
+        <text x="28" y="52" font-family="Helvetica,Arial" font-size="9" fill="#777">0</text>
+        <text x="43" y="52" font-family="Helvetica,Arial" font-size="11" font-weight="bold" fill="#8a4a4a">−</text>
+      </svg>
+    </div>
+
+    <div style="border:1px solid #bbb;padding:5mm;">
+      <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:3mm;">Manual Adjust</p>
+      <p style="font-size:13px;margin-bottom:2mm;text-align:left;">
+        Swipe the <strong>right-edge knob</strong> up or down.<br>
+        Each tick = ±&nbsp;0.01&thinsp;km.
+      </p>
+      <svg viewBox="0 0 60 60" width="50" style="display:block;margin:3mm auto 0;">
+        <rect x="22" y="8" width="16" height="44" rx="6" fill="#1a1a1a" stroke="#666" stroke-width="1.5"/>
+        <circle cx="30" cy="30" r="6" fill="#333" stroke="#666" stroke-width="1"/>
+        <text x="30" y="6" font-family="Helvetica,Arial" font-size="9" font-weight="bold" fill="#4a8a4a" text-anchor="middle">+</text>
+        <text x="30" y="58" font-family="Helvetica,Arial" font-size="9" font-weight="bold" fill="#8a4a4a" text-anchor="middle">−</text>
+        <text x="30" y="4" font-family="Helvetica,Arial" font-size="7" fill="#888" text-anchor="middle">&#9650;</text>
+        <text x="30" y="60" font-family="Helvetica,Arial" font-size="7" fill="#888" text-anchor="middle">&#9660;</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="heavy">
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub-head">Rally Stage Workflow</h3>
+      <ol class="instructions">
+        <li>Before the stage: reset to zero or set a known starting distance.</li>
+        <li>At the start line: set Mode Knob to <strong>+</strong>.</li>
+        <li>Drive. Read the counter against the roadbook.</li>
+        <li>Correct with the Side Knob at known distance markers.</li>
+        <li>At finish or service: set Mode Knob to <strong>0</strong>.</li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub-head">Countdown Workflow</h3>
+      <ol class="instructions">
+        <li>Set the stage total distance using the Side Knob.</li>
+        <li>Set Mode Knob to <strong>−</strong> at the start.</li>
+        <li>Drive. The counter counts down to 000.00.</li>
+        <li>000.00 = end of the set distance.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <p style="font-size:11px;color:#888;text-align:center;margin-top:4mm;">
+    The Classic Rally Tripmaster is a simulation instrument for use in historic and vintage rally motorsport.
+    Always observe local traffic regulations. GPS accuracy may vary with satellite availability and atmospheric conditions.
+  </p>
+
+  <div class="page-footer">
+    <span>Classic Rally Tripmaster</span>
+    <span>Quick Reference</span>
+  </div>
+</div>
+
+</body>
+</html>
