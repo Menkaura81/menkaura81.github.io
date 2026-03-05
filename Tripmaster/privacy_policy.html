@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Classic Rally Tripmaster</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --ink-light: #555;
+      --ink-muted: #999;
+      --rule: #e0e0e0;
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --accent: #c0392b;
+      --accent-light: #fdf2f1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 28px 24px;
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .app-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .brand {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    .page-title {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .page-title h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .page-title p {
+      color: var(--ink-light);
+      font-size: 1rem;
+      max-width: 540px;
+    }
+    .meta-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-chip {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+    .meta-chip span { color: var(--ink); }
+
+    .toc {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+    .toc ol { list-style: none; columns: 2; column-gap: 24px; }
+    .toc ol li { break-inside: avoid; margin-bottom: 8px; }
+    .toc ol li a {
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+    .toc ol li a:hover { color: var(--accent); }
+    .toc ol li a .num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      min-width: 18px;
+    }
+    @media (max-width: 500px) { .toc ol { columns: 1; } }
+
+    .section { margin-bottom: 48px; scroll-margin-top: 24px; }
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-num {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      min-width: 24px;
+    }
+    .section-heading h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .section-body p {
+      color: var(--ink-light);
+      margin-bottom: 14px;
+      font-size: 0.96rem;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body strong { color: var(--ink); font-weight: 600; }
+
+    .data-list { list-style: none; margin: 16px 0; }
+    .data-list li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.93rem;
+      color: var(--ink-light);
+      align-items: flex-start;
+    }
+    .data-list li:first-child { border-top: 1px solid var(--rule); }
+    .data-list li::before {
+      content: '';
+      width: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 6px;
+      height: 14px;
+    }
+
+    .notice {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+    }
+    .notice strong { color: var(--accent); }
+    .notice-ok { background: #f0faf4; border-left-color: #27ae60; }
+    .notice-ok strong { color: #27ae60; }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .right-item {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: var(--white);
+    }
+    .right-item strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .right-item span { font-size: 0.81rem; color: var(--ink-muted); line-height: 1.5; }
+
+    .tp-list { margin-top: 16px; }
+    .tp-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: flex-start;
+    }
+    .tp-item:first-child { border-top: 1px solid var(--rule); }
+    .tp-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); min-width: 140px; }
+    .tp-desc { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6; }
+
+    .contact-block {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .contact-block h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .contact-block p { color: var(--ink-muted); font-size: 0.95rem; margin-bottom: 24px; }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .contact-btn:hover { opacity: 0.88; }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      background: var(--white);
+    }
+    footer strong { color: var(--ink); }
+
+    @media (max-width: 600px) {
+      .page-title h1 { font-size: 1.9rem; }
+      .toc { padding: 20px; }
+      .contact-block { padding: 28px 20px; }
+      .tp-item { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-badge">🏁</div>
+    <div>
+      <div class="app-name">Classic Rally Tripmaster</div>
+      <div class="brand">Menkaura Soft &nbsp;·&nbsp; Privacy</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-title">
+    <h1>Privacy Policy</h1>
+    <p>We believe privacy should be simple and transparent. This document explains exactly what data Classic Rally Tripmaster uses and why.</p>
+    <div class="meta-row">
+      <div class="meta-chip">📅 Last updated: <span>March 2025</span></div>
+      <div class="meta-chip">📱 Platform: <span>Android</span></div>
+      <div class="meta-chip">🏢 Developer: <span>Menkaura Soft</span></div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#controller"><span class="num">01</span> Data Controller</a></li>
+      <li><a href="#data"><span class="num">02</span> Data We Collect</a></li>
+      <li><a href="#purpose"><span class="num">03</span> Purpose of Processing</a></li>
+      <li><a href="#storage"><span class="num">04</span> Local Storage</a></li>
+      <li><a href="#third-parties"><span class="num">05</span> Third-Party Services</a></li>
+      <li><a href="#retention"><span class="num">06</span> Data Retention</a></li>
+      <li><a href="#rights"><span class="num">07</span> Your Rights</a></li>
+      <li><a href="#security"><span class="num">08</span> Security</a></li>
+      <li><a href="#minors"><span class="num">09</span> Minors</a></li>
+      <li><a href="#changes"><span class="num">10</span> Policy Changes</a></li>
+    </ol>
+  </nav>
+
+  <section class="section" id="controller">
+    <div class="section-heading">
+      <span class="section-num">01</span>
+      <h2>Data Controller</h2>
+    </div>
+    <div class="section-body">
+      <p>The data controller responsible for the personal data of Classic Rally Tripmaster users is:</p>
+      <ul class="data-list">
+        <li><strong>Developer:&nbsp;</strong> Menkaura Soft</li>
+        <li><strong>Application:&nbsp;</strong> Classic Rally Tripmaster (development name: HaldaTripMaster)</li>
+        <li><strong>Contact:&nbsp;</strong> menkaurasoft@gmail.com</li>
+      </ul>
+      <p>By downloading and using Classic Rally Tripmaster, the user accepts the terms described in this policy, in accordance with the General Data Protection Regulation (GDPR) and the Spanish Organic Law 3/2018 on Personal Data Protection (LOPDGDD).</p>
+    </div>
+  </section>
+
+  <section class="section" id="data">
+    <div class="section-heading">
+      <span class="section-num">02</span>
+      <h2>Data We Collect</h2>
+    </div>
+    <div class="section-body">
+      <p>Classic Rally Tripmaster is an offline tool designed for rally navigation. The app collects only the data strictly necessary for its operation:</p>
+      <ul class="data-list">
+        <li><strong>User settings:&nbsp;</strong> Configuration parameters such as units, distance calibration and display preferences, stored locally on the device.</li>
+        <li><strong>Route and stage data:&nbsp;</strong> Distances, waypoints and timing records entered by the user, stored locally on the device.</li>
+        <li><strong>Anonymous usage data:&nbsp;</strong> Aggregated and anonymised information about feature usage to improve the app, only if the user has consented to analytics.</li>
+      </ul>
+      <div class="notice">
+        <strong>Important:</strong> Classic Rally Tripmaster does <strong>not</strong> collect your name, email address, phone number, GPS location or any other personally identifiable information, unless you voluntarily provide it via the contact form.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="purpose">
+    <div class="section-heading">
+      <span class="section-num">03</span>
+      <h2>Purpose of Processing</h2>
+    </div>
+    <div class="section-body">
+      <p>The data collected is used exclusively to:</p>
+      <ul class="data-list">
+        <li>Provide tripmaster and odometer functions for rally navigation.</li>
+        <li>Save the user's preferences and configuration to personalise the in-app experience.</li>
+        <li>Improve the quality of the service through anonymous usage statistics (only with the user's consent).</li>
+        <li>Respond to queries or support requests voluntarily submitted by the user.</li>
+      </ul>
+      <div class="notice notice-ok">
+        <strong>Our commitment:</strong> We do not use your data for targeted advertising, commercial profiling or any purpose other than those described in this policy.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="storage">
+    <div class="section-heading">
+      <span class="section-num">04</span>
+      <h2>Local Storage</h2>
+    </div>
+    <div class="section-body">
+      <p>Classic Rally Tripmaster is designed to work primarily without an internet connection. All data handling follows these principles:</p>
+      <ul class="data-list">
+        <li>All routes, settings and stage records are stored <strong>exclusively on the user's device</strong>.</li>
+        <li>Locally stored data is <strong>not synchronised with external servers</strong> and is not shared with third parties without the user's explicit consent.</li>
+        <li>Data is stored in the app's private storage space, inaccessible to other applications on the device.</li>
+        <li>Uninstalling the application automatically and permanently deletes all locally stored data.</li>
+      </ul>
+      <div class="notice">
+        Your routes and configuration never leave your device unless you choose to export them manually or share a diagnostic report with support.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="third-parties">
+    <div class="section-heading">
+      <span class="section-num">05</span>
+      <h2>Third-Party Services</h2>
+    </div>
+    <div class="section-body">
+      <p>Classic Rally Tripmaster may integrate the following third-party services, each governed by their own privacy policy:</p>
+      <div class="tp-list">
+        <div class="tp-item">
+          <span class="tp-name">Google Play Services</span>
+          <span class="tp-desc">Required for the app to function on Android devices. See Google's privacy policy at policies.google.com.</span>
+        </div>
+        <div class="tp-item">
+          <span class="tp-name">Firebase (Google)</span>
+          <span class="tp-desc">Optionally used for anonymous usage analytics and update management. Any transmitted data is anonymous and aggregated.</span>
+        </div>
+      </div>
+      <p style="margin-top:16px;">We do not sell, transfer or share personal data with third parties for commercial purposes under any circumstances.</p>
+    </div>
+  </section>
+
+  <section class="section" id="retention">
+    <div class="section-heading">
+      <span class="section-num">06</span>
+      <h2>Data Retention</h2>
+    </div>
+    <div class="section-body">
+      <p>Configuration and route data is stored <strong>exclusively on the user's device</strong> and deleted automatically when the application is uninstalled.</p>
+      <p>Any anonymous and aggregated usage data that may be transmitted to our servers is retained for a maximum of <strong>24 months</strong>, after which it is permanently deleted.</p>
+      <p>If you contact us by email, the data you provide is retained only for as long as needed to handle your request, and for a maximum of <strong>12 months</strong>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="rights">
+    <div class="section-heading">
+      <span class="section-num">07</span>
+      <h2>Your Rights</h2>
+    </div>
+    <div class="section-body">
+      <p>Under the GDPR, you have the following rights regarding your personal data:</p>
+      <div class="rights-grid">
+        <div class="right-item"><strong>Access</strong><span>Know what data we hold about you.</span></div>
+        <div class="right-item"><strong>Rectification</strong><span>Correct inaccurate or incomplete data.</span></div>
+        <div class="right-item"><strong>Erasure</strong><span>Request deletion ("right to be forgotten").</span></div>
+        <div class="right-item"><strong>Restriction</strong><span>Limit how your data is processed.</span></div>
+        <div class="right-item"><strong>Portability</strong><span>Receive your data in a structured format.</span></div>
+        <div class="right-item"><strong>Objection</strong><span>Object to processing in certain cases.</span></div>
+      </div>
+      <p style="margin-top:20px;">To exercise any of these rights, contact us at <strong>menkaurasoft@gmail.com</strong>. We will respond within 30 days. You may also lodge a complaint with the Spanish Data Protection Authority (AEPD) at <strong>www.aepd.es</strong>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="security">
+    <div class="section-heading">
+      <span class="section-num">08</span>
+      <h2>Security</h2>
+    </div>
+    <div class="section-body">
+      <p>We apply technical and organisational measures to protect data against unauthorised access, loss, alteration or improper disclosure:</p>
+      <ul class="data-list">
+        <li>Encrypted communications via <strong>HTTPS/TLS</strong> for all server connections.</li>
+        <li>Data stored in the <strong>app's private storage</strong>, not accessible to other applications.</li>
+        <li>Periodic review of implemented security measures.</li>
+        <li>Server-side data access restricted to authorised Menkaura Soft personnel only.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="minors">
+    <div class="section-heading">
+      <span class="section-num">09</span>
+      <h2>Minors</h2>
+    </div>
+    <div class="section-body">
+      <p>Classic Rally Tripmaster is not directed at children under the age of 14. We do not knowingly collect personal data from minors. If you are a parent or legal guardian and believe your child has provided data through the app, please contact us at <strong>menkaurasoft@gmail.com</strong> and we will delete it as soon as possible.</p>
+    </div>
+  </section>
+
+  <section class="section" id="changes">
+    <div class="section-heading">
+      <span class="section-num">10</span>
+      <h2>Policy Changes</h2>
+    </div>
+    <div class="section-body">
+      <p>Menkaura Soft reserves the right to update this privacy policy to reflect changes in legislation or app functionality. Any significant changes will be notified through a notice within the app or via a push notification.</p>
+      <p>We recommend reviewing this page periodically. The date of the last update is always shown at the top of this document.</p>
+    </div>
+  </section>
+
+  <div class="contact-block">
+    <h3>Any questions?</h3>
+    <p>We're happy to answer any questions you have about how your data is handled.</p>
+    <a href="mailto:menkaurasoft@gmail.com" class="contact-btn">✉️ menkaurasoft@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 <strong>Menkaura Soft</strong> &nbsp;·&nbsp; Classic Rally Tripmaster &nbsp;·&nbsp; All rights reserved<br />
+  Privacy Policy in accordance with the GDPR and LOPDGDD
+</footer>
+
+</body>
+</html>
