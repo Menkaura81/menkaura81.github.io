@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCSX2 Guide — Anyshift Docs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">⚙ ANYSHIFT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quick-reference.html">Quick Reference</a></li>
+      <li><a href="dosbox.html">DOSBox</a></li>
+      <li><a href="duckstation.html">DuckStation</a></li>
+      <li><a href="pcsx2.html" class="active">PCSX2</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> PCSX2 Guide</div>
+    <h1>How to Use Anyshift with PCSX2</h1>
+    <p>
+      Full setup guide for playing PS2 racing games with a force feedback wheel and
+      H-pattern shifter using PCSX2 1.6.0.
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── TOC ── -->
+  <div class="toc">
+    <h4>📋 On this page</h4>
+    <ol>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#usb-wheel">USB Wheel Plugin Setup</a></li>
+      <li><a href="#wheel-config">Wheel Axis &amp; Button Config</a></li>
+      <li><a href="#gamepad-config">Gamepad / Controller Config</a></li>
+      <li><a href="#anyshift-setup">Configure Anyshift</a></li>
+      <li><a href="#games">Supported PS2 Games</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Requirements ── -->
+  <section id="requirements">
+    <h2>Requirements</h2>
+    <ul>
+      <li>
+        <strong>PCSX2 1.6.0</strong> — newer versions do not support force feedback wheels
+        at the time of writing. Use exactly version 1.6.0 for FF support.
+        <br/><a href="https://pcsx2.net/downloads" target="_blank" rel="noopener">Download PCSX2 1.6.0 →</a>
+      </li>
+      <li>A <strong>force feedback steering wheel</strong> with DirectInput support</li>
+      <li>An <strong>H-pattern gear shifter</strong> recognised by Windows</li>
+      <li><strong>Anyshift</strong> installed and working</li>
+      <li>Your PS2 game ISO (Gran Turismo 4, Enthusia, Tokyo Xtreme Racer 3, etc.)</li>
+    </ul>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ PCSX2 Version</div>
+      If you don't need force feedback, newer versions of PCSX2 (PCSX2-Qt) may work too.
+      But for full force feedback support on Logitech/Thrustmaster/Fanatec wheels,
+      stick with <strong>PCSX2 1.6.0</strong>.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── USB Wheel Plugin ── -->
+  <section id="usb-wheel">
+    <h2>Step 1 — USB Wheel Plugin Setup</h2>
+
+    <p>
+      PCSX2 emulates a PlayStation 2 USB wheel via its USB plugin. You need to tell it
+      which wheel model to emulate — different games work best with different wheel types.
+    </p>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Open USB Plugin Settings</h4>
+          <p>
+            In PCSX2 1.6.0, go to <strong>Config → USB → Plugin Settings</strong>.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Set Device type to "Wheel device"</h4>
+          <p>
+            Under <strong>Device type — Port 1</strong>, select <strong>Wheel device</strong>.
+            Leave Port 2 as None (unless you need a second controller).
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Set Device API to "DInput"</h4>
+          <p>
+            Under <strong>Device API — Port 1</strong>, select <strong>DInput</strong>.
+            This uses the DirectInput driver, which is required for force feedback.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select the emulated wheel model</h4>
+          <p>
+            Under <strong>Emulated wheel — Port 1</strong>, choose the wheel model that
+            matches what the game expects. See the table below.
+          </p>
+          <div class="table-wrap" style="margin-top:.75rem;">
+            <table>
+              <thead>
+                <tr><th>Game</th><th>Emulated wheel</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gran Turismo 4</td>
+                  <td><strong>Driving Force Pro (rev11.02)</strong></td>
+                </tr>
+                <tr>
+                  <td>Enthusia Professional Racing</td>
+                  <td><strong>Driving Force Pro</strong></td>
+                </tr>
+                <tr>
+                  <td>Tokyo Xtreme Racer 3</td>
+                  <td><strong>Driving Force</strong></td>
+                </tr>
+                <tr>
+                  <td>Tokyo Xtreme Racer Drift 2</td>
+                  <td><strong>Driving Force</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Click OK to save</h4>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Wheel Config ── -->
+  <section id="wheel-config">
+    <h2>Step 2 — Configure Wheel Axes &amp; Buttons</h2>
+
+    <p>
+      After saving the USB plugin settings, click <strong>Configure</strong> next to
+      Port 1 to open the wheel axis/button configuration window.
+    </p>
+
+    <h3>Mapping your wheel</h3>
+    <p>
+      The configuration window shows all available inputs. Map these at a minimum:
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Plugin input</th>
+            <th>Map to</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Steer Left / Steer Right</strong></td>
+            <td>Steering wheel axis (left/right)</td>
+            <td>Use the full steering axis of your wheel</td>
+          </tr>
+          <tr>
+            <td><strong>Throttle</strong></td>
+            <td>Accelerator pedal axis</td>
+            <td>Separate pedal axis if your wheel supports it</td>
+          </tr>
+          <tr>
+            <td><strong>Brake</strong></td>
+            <td>Brake pedal axis</td>
+            <td>Separate pedal axis if your wheel supports it</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Pedals — separated vs combined</div>
+      For GT4 and Enthusia, <strong>separate pedal axes</strong> are supported and recommended.
+      The wheel configuration should have individual throttle and brake axes.
+      Enable independent pedals in your wheel software if available.
+    </div>
+
+    <h3>Force Feedback settings</h3>
+    <p>In the right panel of the wheel config window:</p>
+    <ul>
+      <li>Enable <strong>Force Feedback</strong> for the best experience.</li>
+      <li>Adjust <strong>Gain</strong> to taste (start at 75%).</li>
+      <li>Enable <strong>Bypass Startup Calibration</strong> to skip the startup wheel spin.</li>
+    </ul>
+
+    <h3>Shift buttons — Tokyo Xtreme Racer only</h3>
+    <p>
+      <em>Tokyo Xtreme Racer 3</em> and <em>Drift 2</em> use <strong>L1 / R1</strong> for
+      shifting and read input from the USB wheel plugin — not the gamepad plugin.
+      For these games, map the shift buttons directly in this wheel config window:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Game action</th><th>Map to key</th><th>Anyshift</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>L1 (downshift)</td>
+            <td><kbd>Z</kbd></td>
+            <td>Downshift key</td>
+          </tr>
+          <tr>
+            <td>R1 (upshift)</td>
+            <td><kbd>S</kbd></td>
+            <td>Upshift key</td>
+          </tr>
+          <tr>
+            <td>Circle (reverse)</td>
+            <td><kbd>C</kbd></td>
+            <td>Reverse key</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ Note for TXR3 / Drift 2</div>
+      When you bind shift keys in the USB wheel plugin, the wheel paddles lose their
+      original function. If you want to use wheel paddles for shifting, rebind them here.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Gamepad Config ── -->
+  <section id="gamepad-config">
+    <h2>Step 3 — Gamepad Controller Config (GT4 &amp; Enthusia)</h2>
+
+    <p>
+      For <strong>Gran Turismo 4</strong> and <strong>Enthusia</strong>, the shift and reverse
+      buttons are read through the <strong>gamepad (PAD) plugin</strong>, not the USB wheel
+      plugin. This approach lets you keep using the wheel paddles for shifting if you want —
+      the gamepad binding coexists with the paddle binding.
+    </p>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Open the Gamepad Plugin Settings</h4>
+          <p>
+            Go to <strong>Config → Controllers (PAD) → Plugin Settings</strong>.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Go to the Pad 1 tab</h4>
+          <p>Select the <strong>Pad 1</strong> tab in the LilyPad settings window.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Bind the shift keys using your keyboard</h4>
+          <p>
+            Under the <em>Device: WM Keyboard</em> entries, assign the following keyboard keys
+            to the corresponding PS2 gamepad buttons:
+          </p>
+
+          <h4 style="margin-top:1rem;">Gran Turismo 4</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>PS2 button</th><th>Game function</th><th>Keyboard key</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>L2</td>
+                  <td>Downshift</td>
+                  <td><kbd>Z</kbd></td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>Upshift</td>
+                  <td><kbd>S</kbd></td>
+                </tr>
+                <tr>
+                  <td>Triangle (△)</td>
+                  <td>Reverse</td>
+                  <td><kbd>C</kbd></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:1rem;">Enthusia Professional Racing</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>PS2 button</th><th>Game function</th><th>Keyboard key</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>L2</td>
+                  <td>Downshift</td>
+                  <td><kbd>Z</kbd></td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>Upshift</td>
+                  <td><kbd>S</kbd></td>
+                </tr>
+                <tr>
+                  <td>—</td>
+                  <td>Reverse (it's a gear, not a button)</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Click Aceptar / OK to save</h4>
+        </div>
+      </li>
+    </ol>
+
+    <div class="callout callout-success">
+      <div class="callout-title">✅ Wheel paddles still work</div>
+      By binding shift keys in the PAD plugin (gamepad), your physical wheel paddles
+      continue to work as upshift/downshift — they coexist with the Anyshift key simulation.
+      This means you can shift with either the H-shifter or the paddles.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Anyshift Setup ── -->
+  <section id="anyshift-setup">
+    <h2>Step 4 — Configure Anyshift</h2>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Launch Anyshift</h4>
+          <p>Run <code>Anyshift.exe</code>. Run as Administrator if it has trouble sending keystrokes.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Load a preset</h4>
+          <p>
+            In <strong>Profiles</strong>, pick the preset for your game and click
+            <strong>Load profile</strong>. Memory write presets are also available.
+          </p>
+          <div class="table-wrap" style="margin-top:.5rem;">
+            <table>
+              <thead><tr><th>Game</th><th>Key Press preset</th><th>Memory Write preset</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Gran Turismo 4</td>
+                  <td><code>Gran_Turismo4_pcsx2</code></td>
+                  <td><code>Gran_Turismo4_pcsx2_memMode</code></td>
+                </tr>
+                <tr>
+                  <td>Enthusia</td>
+                  <td><code>Enthusia_pcsx2</code></td>
+                  <td><code>Enthusia_pcsx2_memMode</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select your shifter and configure buttons</h4>
+          <p>
+            In <strong>Joystick selection</strong>, choose your H-shifter. Assign each gear
+            in the <strong>Joystick Buttons</strong> section.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Verify Key Selection</h4>
+          <p>
+            Confirm the keys in Anyshift match what you set in the PCSX2 PAD plugin:
+          </p>
+          <div class="table-wrap" style="margin-top:.5rem;">
+            <table>
+              <thead><tr><th>Anyshift field</th><th>Default</th></tr></thead>
+              <tbody>
+                <tr><td>Upshift</td><td><kbd>S</kbd></td></tr>
+                <tr><td>Downshift</td><td><kbd>Z</kbd></td></tr>
+                <tr><td>Reverse</td><td><kbd>C</kbd></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Click "Run Anyshift", then start PCSX2</h4>
+          <p>
+            Click <strong>Run Anyshift</strong>. The window freezes — that's normal.
+            Open PCSX2 and load your game. Select <strong>manual transmission</strong>
+            in the game options before getting in the car.
+          </p>
+          <p style="margin-top:.4rem; font-size:.88rem; color:var(--text-muted);">
+            Press <kbd>End</kbd> to stop Anyshift.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Games ── -->
+  <section id="games">
+    <h2>Supported PS2 Games</h2>
+
+    <!-- GT4 -->
+    <h3>Gran Turismo 4</h3>
+    <div class="two-col">
+      <div>
+        <h4>Game details</h4>
+        <ul style="font-size:.88rem;">
+          <li>Tested with: NTSC US version</li>
+          <li>Supports native 1080i and 60fps</li>
+          <li>Force feedback: ✅</li>
+          <li>900° wheel rotation: ✅</li>
+          <li>Independent pedals: ✅</li>
+          <li>Memory Write mode: ✅ (reverse slightly buggy in mem mode)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+              <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ Rolling start tip</div>
+      On rolling starts, engage the correct starting gear <em>before</em> crossing the start
+      line to avoid desynchronisation.
+    </div>
+
+    <!-- Enthusia -->
+    <h3>Enthusia Professional Racing</h3>
+    <div class="two-col">
+      <div>
+        <h4>Game details</h4>
+        <ul style="font-size:.88rem;">
+          <li>Tested with: PAL version</li>
+          <li>Force feedback: ✅</li>
+          <li>900° wheel rotation: ✅</li>
+          <li>Independent pedals: ✅</li>
+          <li>Memory Write mode: ✅</li>
+          <li>Reverse is a sequential gear (not a button)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>❌ Off</td></tr>
+              <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+              <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-info">
+      <div class="callout-title">💡 Sync tip</div>
+      Before going to the track, engage <strong>1st gear</strong> on the shifter to
+      avoid desynchronisation.
+    </div>
+
+    <!-- TXR3 -->
+    <h3>Tokyo Xtreme Racer 3</h3>
+    <div class="two-col">
+      <div>
+        <h4>Game details</h4>
+        <ul style="font-size:.88rem;">
+          <li>Tested with: PAL version</li>
+          <li>Force feedback: ✅ (uses Driving Force — not DFPro)</li>
+          <li>Uses L1/R1 buttons for shifting (USB wheel plugin)</li>
+          <li>Neutral detected, reverse is a button</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>✅ On</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+              <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TXR Drift 2 -->
+    <h3>Tokyo Xtreme Racer Drift 2</h3>
+    <div class="two-col">
+      <div>
+        <h4>Game details</h4>
+        <ul style="font-size:.88rem;">
+          <li>Tested with: PAL version</li>
+          <li>Force feedback: ✅</li>
+          <li>900° wheel rotation: ✅</li>
+          <li>Independent pedals: ✅</li>
+          <li>Uses L1/R1 buttons for shifting (USB wheel plugin)</li>
+          <li>Game autoshifts to neutral when stopped — watch for this</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+              <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ Sync tip</div>
+      Engage <strong>1st gear</strong> before you start accelerating — the game will engage
+      1st automatically when you accelerate. The game autoshifts to neutral when stopped,
+      so re-select 1st gear each time you come to a stop.
+    </div>
+
+    <!-- Summary table -->
+    <h3>Quick settings comparison</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Emulated wheel</th>
+            <th>Shift input via</th>
+            <th>Detect Neutral</th>
+            <th>Reverse is btn</th>
+            <th>FF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gran Turismo 4</td>
+            <td>DFPro rev11.02</td>
+            <td>PAD plugin (L2/R2)</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Enthusia</td>
+            <td>Driving Force Pro</td>
+            <td>PAD plugin (L2/R2)</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Tokyo Xtreme Racer 3</td>
+            <td>Driving Force</td>
+            <td>USB plugin (L1/R1)</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Tokyo Xtreme Racer Drift 2</td>
+            <td>Driving Force</td>
+            <td>USB plugin (L1/R1)</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Anyshift documentation &nbsp;|&nbsp;
+    <a href="index.html">Home</a> &nbsp;|&nbsp;
+    <a href="quick-reference.html">Quick Reference</a> &nbsp;|&nbsp;
+    <a href="https://github.com/Menkaura81/Anyshift">GitHub</a> &nbsp;|&nbsp;
+    <a href="https://www.buymeacoffee.com/Menkaura">☕ Buy me a coffee</a>
+  </p>
+</footer>
+
+</body>
+</html>

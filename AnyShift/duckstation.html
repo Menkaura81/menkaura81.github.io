@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DuckStation Guide — Anyshift Docs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">⚙ ANYSHIFT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quick-reference.html">Quick Reference</a></li>
+      <li><a href="dosbox.html">DOSBox</a></li>
+      <li><a href="duckstation.html" class="active">DuckStation</a></li>
+      <li><a href="pcsx2.html">PCSX2</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> DuckStation Guide</div>
+    <h1>How to Use Anyshift with DuckStation</h1>
+    <p>
+      Play PS1 racing games with your H-shifter using the DuckStation emulator and
+      its NeGcon controller support.
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── TOC ── -->
+  <div class="toc">
+    <h4>📋 On this page</h4>
+    <ol>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#negcon-setup">NeGcon Controller Setup</a></li>
+      <li><a href="#axis-buttons">Axis &amp; Button Mapping</a></li>
+      <li><a href="#gt1-setup">Gran Turismo 1 Setup</a></li>
+      <li><a href="#initiald-setup">Initial D Setup</a></li>
+      <li><a href="#anyshift-setup">Configure Anyshift</a></li>
+      <li><a href="#compatible-games">PS1 NeGcon Compatible Games</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Requirements ── -->
+  <section id="requirements">
+    <h2>Requirements</h2>
+    <ul>
+      <li><strong>DuckStation</strong> — download from <a href="https://www.duckstation.org/" target="_blank" rel="noopener">duckstation.org</a>. Any recent version works.</li>
+      <li>A <strong>steering wheel</strong> with a steering axis (force feedback not supported in DuckStation PS1 emulation)</li>
+      <li>An <strong>H-pattern gear shifter</strong> recognised by Windows</li>
+      <li><strong>Anyshift</strong> installed and working</li>
+      <li>Your PS1 game ROM/image (Gran Turismo, Initial D, etc.)</li>
+    </ul>
+
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Why NeGcon?</div>
+      The PlayStation 1 did not have an official steering wheel peripheral that PS2 wheels
+      can emulate. DuckStation supports the <strong>NeGcon</strong> controller — a special
+      analog controller that uses rotation for steering and analog face buttons for
+      throttle/brake. It's the best way to use a steering wheel with PS1 games.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── NeGcon Setup ── -->
+  <section id="negcon-setup">
+    <h2>Step 1 — Configure NeGcon in DuckStation</h2>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Open DuckStation Controller Settings</h4>
+          <p>
+            In DuckStation, go to <strong>Settings → Controllers</strong>.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select NeGcon for Controller Port 1</h4>
+          <p>
+            Click on <strong>Controller Port 1</strong> in the left sidebar.
+            From the controller type dropdown, select <strong>NeGcon</strong>.
+          </p>
+          <div class="callout callout-warning" style="margin-top:.75rem;">
+            <div class="callout-title">⚠ Do not use Digital Controller or Analog Controller</div>
+            Only NeGcon provides proper analog steering input that maps to your wheel's
+            steering axis. Other controller types won't give you proportional steering.
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Axis & Buttons ── -->
+  <section id="axis-buttons">
+    <h2>Step 2 — Map Steering Axis &amp; Pedals</h2>
+
+    <p>
+      With NeGcon selected you'll see the controller binding screen. Map these inputs:
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>NeGcon Input</th>
+            <th>Type</th>
+            <th>Bind to</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Steering / Twist</strong></td>
+            <td>Analog axis</td>
+            <td>Your wheel's steering axis</td>
+            <td>Left = full left lock, Right = full right lock</td>
+          </tr>
+          <tr>
+            <td><strong>I button</strong></td>
+            <td>Analog axis</td>
+            <td>Throttle axis (accelerator pedal)</td>
+            <td>I is the main analog button on the NeGcon — used for acceleration</td>
+          </tr>
+          <tr>
+            <td><strong>II button</strong></td>
+            <td>Analog axis</td>
+            <td>Brake axis (brake pedal)</td>
+            <td>II is the secondary analog button — used for braking</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Pedal mode</div>
+      Most wheels that don't natively support NeGcon will need <strong>separated pedals</strong>
+      mode (each pedal on its own axis). This is opposite to the DOSBox requirement.
+      Check your wheel software — set pedals to <em>Separated</em> if available,
+      and map throttle and brake axes independently in DuckStation.
+      <br/><br/>
+      Recommended wheel rotation: <strong>720°</strong> for most PS1 racing games.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Gran Turismo 1 ── -->
+  <section id="gt1-setup">
+    <h2>Step 3a — Gran Turismo 1 Button Mapping</h2>
+
+    <p>
+      Gran Turismo 1 uses these controls for manual shifting and reverse:
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game action</th>
+            <th>NeGcon button</th>
+            <th>Bind to key</th>
+            <th>Anyshift default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Upshift</td>
+            <td>D-Pad Up</td>
+            <td><kbd>S</kbd></td>
+            <td>Upshift key</td>
+          </tr>
+          <tr>
+            <td>Downshift</td>
+            <td>D-Pad Down</td>
+            <td><kbd>Z</kbd></td>
+            <td>Downshift key</td>
+          </tr>
+          <tr>
+            <td>Reverse</td>
+            <td>B button</td>
+            <td><kbd>C</kbd></td>
+            <td>Reverse key</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ In-game menus</div>
+      After mapping D-Pad Up to <kbd>S</kbd> and D-Pad Down to <kbd>Z</kbd>,
+      these keys will also navigate menus. Use <kbd>S</kbd> to go up and
+      <kbd>Z</kbd> to go down in all in-game menus.
+    </div>
+
+    <h4>Anyshift Options for Gran Turismo 1</h4>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+          <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+          <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+          <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.88rem; color:var(--text-muted);">
+      Select first gear on the shifter before going to the track to avoid desynchronisation.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Initial D ── -->
+  <section id="initiald-setup">
+    <h2>Step 3b — Initial D Button Mapping</h2>
+
+    <p>
+      Initial D uses shoulder buttons (L / R) for shifting and has no reverse gear:
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game action</th>
+            <th>NeGcon button</th>
+            <th>Bind to key</th>
+            <th>Anyshift default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Downshift</td>
+            <td>L (left shoulder)</td>
+            <td><kbd>Z</kbd></td>
+            <td>Downshift key</td>
+          </tr>
+          <tr>
+            <td>Upshift</td>
+            <td>R (right shoulder)</td>
+            <td><kbd>S</kbd></td>
+            <td>Upshift key</td>
+          </tr>
+          <tr>
+            <td>Reverse</td>
+            <td>—</td>
+            <td>—</td>
+            <td>No reverse in this game</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Anyshift Options for Initial D</h4>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+          <tr><td>Reverse is a button</td><td>❌ Off</td></tr>
+          <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+          <tr><td>Nascar mode</td><td>❌ Off</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Anyshift Setup ── -->
+  <section id="anyshift-setup">
+    <h2>Step 4 — Configure Anyshift</h2>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Launch Anyshift</h4>
+          <p>Run <code>Anyshift.exe</code> as Administrator if needed.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Load the Gran Turismo 1 preset (if using GT1)</h4>
+          <p>
+            In <strong>Profiles</strong>, select <code>Gran_Turismo1_Duckstation</code>
+            from the dropdown and click <strong>Load profile</strong>.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select your shifter device</h4>
+          <p>
+            In <strong>Joystick selection</strong>, pick your H-shifter.
+            Enable the clutch if you have one.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Verify Key Selection matches DuckStation</h4>
+          <p>
+            Ensure the Upshift, Downshift, and Reverse keys in Anyshift are
+            identical to what you bound in the DuckStation NeGcon controller config.
+          </p>
+          <div class="table-wrap" style="margin-top:.5rem;">
+            <table>
+              <thead><tr><th>Anyshift field</th><th>Key</th></tr></thead>
+              <tbody>
+                <tr><td>Upshift</td><td><kbd>S</kbd></td></tr>
+                <tr><td>Downshift</td><td><kbd>Z</kbd></td></tr>
+                <tr><td>Reverse</td><td><kbd>C</kbd></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Set the correct Options</h4>
+          <p>
+            For Gran Turismo 1: enable <strong>Reverse is a button</strong>.
+            For Initial D: leave all options unchecked.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Click "Run Anyshift", then launch the game</h4>
+          <p>
+            The Anyshift window will freeze — this is normal. Launch DuckStation and
+            start your game. Select manual transmission in the game settings.
+          </p>
+          <p style="margin-top:.4rem; font-size:.88rem; color:var(--text-muted);">
+            Press <kbd>End</kbd> to stop Anyshift.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Compatible Games ── -->
+  <section id="compatible-games">
+    <h2>PS1 Games Compatible with NeGcon</h2>
+
+    <p>
+      Many PS1 racing games support the NeGcon controller, which means they work with
+      a steering wheel in DuckStation. A comprehensive compatibility list is maintained at:
+    </p>
+    <p>
+      <a href="https://www2.gvsu.edu/brittedg/Negcon.html" target="_blank" rel="noopener">
+        https://www2.gvsu.edu/brittedg/Negcon.html →
+      </a>
+    </p>
+
+    <p>Notable titles known to work:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Reverse</th>
+            <th>Upshift button</th>
+            <th>Downshift button</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gran Turismo 1</td>
+            <td><kbd>C</kbd> (B button)</td>
+            <td><kbd>S</kbd> (D-Pad Up)</td>
+            <td><kbd>Z</kbd> (D-Pad Down)</td>
+          </tr>
+          <tr>
+            <td>Gran Turismo 2</td>
+            <td><kbd>C</kbd> (B button)</td>
+            <td><kbd>S</kbd> (D-Pad Up)</td>
+            <td><kbd>Z</kbd> (D-Pad Down)</td>
+          </tr>
+          <tr>
+            <td>Initial D</td>
+            <td>No reverse</td>
+            <td><kbd>S</kbd> (R shoulder)</td>
+            <td><kbd>Z</kbd> (L shoulder)</td>
+          </tr>
+          <tr>
+            <td>Ridge Racer Type 4</td>
+            <td colspan="3" style="color:var(--text-muted);">Uses automatic shifting — test manually</td>
+          </tr>
+          <tr>
+            <td>Ace Combat</td>
+            <td colspan="3" style="color:var(--text-muted);">Analog control but different button layout — test manually</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.85rem; color:var(--text-muted);">
+      Button mappings may vary between game regions and versions. Check the game's
+      controller settings if the defaults don't work.
+    </p>
+  </section>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Anyshift documentation &nbsp;|&nbsp;
+    <a href="index.html">Home</a> &nbsp;|&nbsp;
+    <a href="quick-reference.html">Quick Reference</a> &nbsp;|&nbsp;
+    <a href="https://github.com/Menkaura81/Anyshift">GitHub</a> &nbsp;|&nbsp;
+    <a href="https://www.buymeacoffee.com/Menkaura">☕ Buy me a coffee</a>
+  </p>
+</footer>
+
+</body>
+</html>

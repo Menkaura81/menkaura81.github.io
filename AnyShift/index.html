@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anyshift — H-Shifter for Any Racing Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">⚙ ANYSHIFT</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="quick-reference.html">Quick Reference</a></li>
+      <li><a href="dosbox.html">DOSBox</a></li>
+      <li><a href="duckstation.html">DuckStation</a></li>
+      <li><a href="pcsx2.html">PCSX2</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <h1>ANYSHIFT</h1>
+  <p class="tagline">
+    Use your H-pattern shifter with <em>any</em> racing game — even games that only support
+    sequential shifting. Compatible with PC games, DOSBox, PCSX2 and DuckStation.
+  </p>
+  <div class="hero-actions">
+    <a href="quick-reference.html" class="btn">Get Started →</a>
+    <a href="https://github.com/Menkaura81/Anyshift" class="btn btn-outline">View on GitHub</a>
+    <a href="https://www.buymeacoffee.com/Menkaura" class="btn btn-outline">☕ Buy me a coffee</a>
+  </div>
+</section>
+
+<!-- ── What is Anyshift ── -->
+<div class="container-wide">
+  <section style="margin: 3rem 0;">
+    <h2>What is Anyshift?</h2>
+    <p>
+      Anyshift is a Windows application written in Python. It reads input from your joystick-based
+      H-pattern gear shifter and translates it so any racing game understands it — whether through
+      simulated keystrokes or direct memory writes.
+    </p>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div class="ui-section-box">
+        <div class="ui-section-label">🎹 Mode 1 — Simulated Keystrokes</div>
+        <p style="font-size:.9rem;">
+          Anyshift translates your H-shifter position into sequential up/downshift key presses.
+          For example, shifting from 2nd to 4th automatically fires two upshift keystrokes.
+          Works with any game that has configurable keyboard controls.
+        </p>
+        <p style="font-size:.88rem; color:var(--text-muted); margin-top:.75rem;">
+          Set the same key in Anyshift's <strong>Key Selection</strong> box and in your game's controller config.
+        </p>
+      </div>
+      <div class="ui-section-box">
+        <div class="ui-section-label">🧠 Mode 2 — Memory Write</div>
+        <p style="font-size:.9rem;">
+          Anyshift writes the current gear value directly to the game's memory address.
+          This is the most reliable method — no desynchronisation ever. Requires knowing
+          the memory address for the gear variable (find it with Cheat Engine).
+        </p>
+        <div class="callout callout-danger" style="margin-top:.75rem; font-size:.85rem; padding:.6rem .9rem;">
+          <div class="callout-title">⚠ Warning</div>
+          Never use Memory Write mode in online games. You may get banned.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">💡 Tip</div>
+      If Anyshift is not working on your system, try running it as <strong>Administrator</strong>.
+    </div>
+  </section>
+
+  <!-- ── Guides ── -->
+  <section style="margin-bottom: 3rem;">
+    <h2>Documentation Guides</h2>
+    <div class="guide-grid">
+      <a href="quick-reference.html" class="guide-card">
+        <span class="card-icon">📖</span>
+        <h3>Quick Reference</h3>
+        <p>Complete UI walkthrough — every section, option, and button explained.</p>
+      </a>
+      <a href="dosbox.html" class="guide-card">
+        <span class="card-icon">💾</span>
+        <h3>DOSBox Guide</h3>
+        <p>Setup for classic DOS racing games: NASCAR, IndyCar, Grand Prix 2 and more.</p>
+      </a>
+      <a href="duckstation.html" class="guide-card">
+        <span class="card-icon">🎮</span>
+        <h3>DuckStation Guide</h3>
+        <p>PS1 emulator setup using the NeGcon controller type. Gran Turismo 1, Initial D…</p>
+      </a>
+      <a href="pcsx2.html" class="guide-card">
+        <span class="card-icon">📀</span>
+        <h3>PCSX2 Guide</h3>
+        <p>Full PS2 emulator setup for Gran Turismo 4, Enthusia, Tokyo Xtreme Racer…</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Supported Games ── -->
+  <section style="margin-bottom: 3rem;">
+    <h2>Supported Games</h2>
+    <p>
+      Below is a reference list of tested games. Anyshift can work with many more —
+      these are simply confirmed working configurations.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Platform</th>
+            <th>Mode</th>
+            <th>Force Feedback</th>
+            <th>Key Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gran Turismo 4</strong></td>
+            <td>PCSX2 1.6</td>
+            <td><span class="badge badge-green">Key Press</span> <span class="badge badge-blue">Memory</span></td>
+            <td>✅ Yes</td>
+            <td>NTSC, 1080p@60fps, 900° rotation. Reverse is a button.</td>
+          </tr>
+          <tr>
+            <td><strong>Enthusia Pro. Racing</strong></td>
+            <td>PCSX2 1.6</td>
+            <td><span class="badge badge-green">Key Press</span> <span class="badge badge-blue">Memory</span></td>
+            <td>✅ Yes</td>
+            <td>PAL, 900° rotation. Reverse is a gear.</td>
+          </tr>
+          <tr>
+            <td><strong>Tokyo Xtreme Racer 3</strong></td>
+            <td>PCSX2 1.6</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>✅ Yes</td>
+            <td>PAL. Use Driving Force wheel type. L1/R1 for shift.</td>
+          </tr>
+          <tr>
+            <td><strong>Tokyo Xtreme Racer Drift 2</strong></td>
+            <td>PCSX2 1.6</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>✅ Yes</td>
+            <td>PAL, 900° rotation. L1/R1 for shift.</td>
+          </tr>
+          <tr>
+            <td><strong>Gran Turismo 1</strong></td>
+            <td>DuckStation</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>❌ No</td>
+            <td>PAL. NeGcon controller. Reverse is a button. 720° recommended.</td>
+          </tr>
+          <tr>
+            <td><strong>Initial D</strong></td>
+            <td>DuckStation</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>❌ No</td>
+            <td>NeGcon controller. No reverse gear.</td>
+          </tr>
+          <tr>
+            <td><strong>NASCAR Racing</strong></td>
+            <td>DOSBox</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>❌ No</td>
+            <td>Combined pedals. Reverse is button. Nascar mode required.</td>
+          </tr>
+          <tr>
+            <td><strong>NASCAR Racing 2</strong></td>
+            <td>DOSBox</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>❌ No</td>
+            <td>Combined pedals. Reverse is button. Nascar mode required.</td>
+          </tr>
+          <tr>
+            <td><strong>IndyCar Racing</strong></td>
+            <td>DOSBox</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>❌ No</td>
+            <td>Combined pedals. Reverse is button. Nascar mode required.</td>
+          </tr>
+          <tr>
+            <td><strong>Grand Prix 2</strong></td>
+            <td>DOSBox <strong>0.74 only</strong></td>
+            <td><span class="badge badge-blue">Memory only</span></td>
+            <td>❌ No</td>
+            <td>Practice mode only (race mode crashes DOSBox). 7th gear = "spin" gearbox position.</td>
+          </tr>
+          <tr>
+            <td><strong>Colin McRae Rally</strong></td>
+            <td>PC (Windows)</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>✅ Yes</td>
+            <td>540° recommended. Neutral detected. Reverse is a gear.</td>
+          </tr>
+          <tr>
+            <td><strong>Indianapolis 500</strong></td>
+            <td>Model 2 Emulator</td>
+            <td><span class="badge badge-green">Key Press</span></td>
+            <td>✅ Yes</td>
+            <td>400° recommended. No reverse gear.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Quick Start ── -->
+  <section style="margin-bottom: 3rem;">
+    <h2>Quick Start</h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Download &amp; extract Anyshift</h4>
+          <p>Unzip Anyshift to any folder. Run <code>Anyshift.exe</code> (or <code>python src/Main.py</code> for the source version). If it doesn't start, try running as Administrator.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Load a preset for your game</h4>
+          <p>In the <strong>Profiles</strong> section, select a preset from the dropdown and click <strong>Load profile</strong>. Presets are included for GT4, Enthusia, Grand Prix 2, NASCAR Racing and more.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select your shifter device</h4>
+          <p>In <strong>Joystick selection</strong>, pick your H-shifter from the dropdown. Optionally enable and select the clutch device.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Map your shifter buttons</h4>
+          <p>Click each gear button in the UI, then physically engage that gear on your shifter to record the button number. Repeat for all gears and reverse.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Configure your game &amp; press Run</h4>
+          <p>Make sure your game uses the same keys as Anyshift's <strong>Key Selection</strong> box (defaults: <kbd>S</kbd> upshift, <kbd>Z</kbd> downshift, <kbd>C</kbd> reverse). Then click <strong>Run Anyshift</strong>, launch your game, and enjoy!</p>
+          <p style="margin-top:.5rem;font-size:.88rem;color:var(--text-muted);">To stop Anyshift press the <kbd>End</kbd> key on your keyboard.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Anyshift — open source Windows utility by <a href="https://www.buymeacoffee.com/Menkaura">Menkaura</a>.
+    &nbsp;|&nbsp; <a href="https://github.com/Menkaura81/Anyshift">GitHub</a>
+    &nbsp;|&nbsp; <a href="https://www.youtube.com/watch?v=ijPjmBfR4QU">GT4 demo video</a>
+    &nbsp;|&nbsp; <a href="https://www.youtube.com/watch?v=WRI1p6f5Af8">NASCAR demo video</a>
+  </p>
+</footer>
+
+</body>
+</html>

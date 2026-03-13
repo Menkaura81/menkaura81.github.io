@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOSBox Guide — Anyshift Docs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">⚙ ANYSHIFT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quick-reference.html">Quick Reference</a></li>
+      <li><a href="dosbox.html" class="active">DOSBox</a></li>
+      <li><a href="duckstation.html">DuckStation</a></li>
+      <li><a href="pcsx2.html">PCSX2</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> DOSBox Guide</div>
+    <h1>How to Use Anyshift with DOSBox</h1>
+    <p>
+      Use your H-pattern shifter with classic DOS racing games — NASCAR Racing, IndyCar Racing,
+      Grand Prix 2, and more.
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── TOC ── -->
+  <div class="toc">
+    <h4>📋 On this page</h4>
+    <ol>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#wheel-setup">Wheel Setup</a></li>
+      <li><a href="#anyshift-setup">Configure Anyshift</a></li>
+      <li><a href="#running">Running</a></li>
+      <li><a href="#games">Supported DOSBox Games</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Requirements ── -->
+  <section id="requirements">
+    <h2>Requirements</h2>
+    <ul>
+      <li>
+        <strong>DOSBox 0.74</strong> — for Memory Write mode (Grand Prix 2) you must use
+        exactly this version. The base memory address changes in 0.74-2 and 0.74-3.
+        For key press mode (NASCAR, IndyCar…) any recent version works fine.
+        <br/><a href="https://sourceforge.net/projects/dosbox/files/dosbox/" target="_blank" rel="noopener">Download DOSBox 0.74 from SourceForge →</a>
+      </li>
+      <li>A <strong>force feedback steering wheel</strong> (Logitech, Thrustmaster, Fanatec, etc.)</li>
+      <li>An <strong>H-pattern gear shifter</strong> recognised by Windows as a joystick</li>
+      <li><strong>Anyshift</strong> installed and working</li>
+    </ul>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Wheel Setup ── -->
+  <section id="wheel-setup">
+    <h2>Step 1 — Configure Your Steering Wheel</h2>
+
+    <p>
+      Most DOS racing games only support one throttle/brake axis (not separate pedals).
+      You need to set your wheel to <strong>combined pedal mode</strong> before launching
+      the game.
+    </p>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Open your wheel's configuration software</h4>
+          <p>
+            For Logitech wheels: open <em>Logitech Gaming Software</em> or <em>G Hub</em>.
+            For Thrustmaster: use <em>Thrustmaster Control Panel</em>. Navigate to the
+            settings for your wheel.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Enable combined pedals</h4>
+          <p>
+            Look for a "Pedal detection mode" or similar option. Select
+            <strong>Combined (single axis)</strong>. This merges throttle and brake into
+            one axis, which is what DOS games expect.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Set steering rotation degrees</h4>
+          <p>
+            DOS games were designed for wheels with limited rotation. Set to
+            <strong>270°</strong> (approximately the lock-to-lock range of wheels from
+            that era). This gives you proportional steering without over-rotating.
+          </p>
+          <p style="font-size:.85rem; color:var(--text-muted);">
+            For IndyCar and NASCAR (oval racing) you may prefer 400° for more precise
+            high-speed steering.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Enable Force Feedback centering (optional)</h4>
+          <p>
+            DOS games generally don't output force feedback effects, but enabling the
+            wheel's <strong>self-centering spring</strong> gives a more realistic feel.
+            Set centering intensity to taste (100% for a firm feel).
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Note</div>
+      The combined pedal setting must remain active for the entire session.
+      Some wheel software resets it on reboot — check before each play session.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Anyshift Setup ── -->
+  <section id="anyshift-setup">
+    <h2>Step 2 — Configure Anyshift</h2>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Launch Anyshift</h4>
+          <p>Run <code>Anyshift.exe</code>. If nothing happens or it errors, try running as Administrator.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Load a preset (if available)</h4>
+          <p>
+            In the <strong>Profiles</strong> section, open the dropdown and pick the preset for
+            your game. Click <strong>Load profile</strong>.
+          </p>
+          <div class="table-wrap" style="margin-top:.75rem;">
+            <table>
+              <thead><tr><th>Game</th><th>Preset file</th></tr></thead>
+              <tbody>
+                <tr><td>NASCAR Racing</td><td><code>Nascar_Racing_DOSBox</code></td></tr>
+                <tr><td>NASCAR Racing 2</td><td><code>Nascar_Racing2_DOSBox</code></td></tr>
+                <tr><td>IndyCar Racing</td><td><code>IndyCar_Racing_DOSBox</code></td></tr>
+                <tr><td>Grand Prix 2</td><td><code>Grand_Prix2_DOSBox_memMode</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:.75rem; font-size:.88rem;">
+            If your game has no preset, continue with manual setup below.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Select your shifter device</h4>
+          <p>
+            In <strong>Joystick selection</strong>, choose your H-shifter from the dropdown.
+            If you use a clutch, tick the <em>Clutch</em> checkbox and select the clutch
+            device. Set the correct <strong>Clutch Axis</strong> number and <strong>Bitepoint</strong>.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Assign shifter buttons</h4>
+          <p>
+            Click each gear position button in the <strong>Joystick Buttons</strong> box,
+            then physically engage that gear. The window will freeze briefly while waiting
+            — this is normal.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Set the correct keys</h4>
+          <p>
+            In <strong>Key Selection</strong>, make sure the Upshift and Downshift keys match
+            what you've configured in the game. See the game-specific tables below for
+            recommended key bindings.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Check Options</h4>
+          <p>
+            Most DOS racing games need specific option combinations. Refer to the
+            <a href="#games">Supported Games</a> table below.
+          </p>
+          <p style="margin-top:.4rem; font-size:.88rem;">
+            Typical setup: <strong>Reverse is a button ✅</strong> and <strong>Nascar mode ✅</strong>
+            for the Papyrus games. Grand Prix 2 needs Memory Write mode.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Running ── -->
+  <section id="running">
+    <h2>Step 3 — Run &amp; Play</h2>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-content">
+          <h4>Click "Run Anyshift"</h4>
+          <p>
+            The Anyshift window will appear frozen. This is expected — Anyshift is actively
+            running in the background and will respond to your shifter.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Launch your game in DOSBox</h4>
+          <p>
+            Start DOSBox, navigate to your game folder, and launch the executable.
+            Configure the game's controls to use the same keys you set in Anyshift.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Before the race starts — select first gear</h4>
+          <p>
+            Engage <strong>1st gear</strong> on your shifter before the race begins or
+            before you gain control of the car. This prevents desynchronisation.
+          </p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-content">
+          <h4>Stopping Anyshift</h4>
+          <p>
+            Press <kbd>End</kbd> on your keyboard to stop Anyshift and return to the
+            configuration window.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Supported Games ── -->
+  <section id="games">
+    <h2>Supported DOSBox Games</h2>
+
+    <!-- NASCAR Racing -->
+    <h3>NASCAR Racing (Papyrus, 1994)</h3>
+    <div class="two-col">
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Use seventh gear</td><td>❌ Off</td></tr>
+              <tr><td>Nascar mode</td><td>✅ On</td></tr>
+              <tr><td>Memory Write mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>Game key bindings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Upshift</td><td><kbd>S</kbd></td></tr>
+              <tr><td>Downshift</td><td><kbd>Z</kbd></td></tr>
+              <tr><td>Reverse</td><td><kbd>C</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.83rem; color:var(--text-muted); margin-top:.5rem;">
+          Configure in the game's control settings. Game glitches slightly if you leave a
+          gear selected in the menus — return to neutral when navigating.
+        </p>
+      </div>
+    </div>
+
+    <!-- NASCAR Racing 2 -->
+    <h3>NASCAR Racing 2 (Papyrus, 1996)</h3>
+    <div class="two-col">
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Nascar mode</td><td>✅ On</td></tr>
+              <tr><td>Memory Write mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>Game key bindings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Upshift</td><td><kbd>A</kbd></td></tr>
+              <tr><td>Downshift</td><td><kbd>Z</kbd></td></tr>
+              <tr><td>Reverse</td><td><kbd>C</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.83rem; color:var(--text-muted); margin-top:.5rem;">
+          Press <kbd>S</kbd> in-game to display the gear HUD.
+        </p>
+      </div>
+    </div>
+
+    <!-- IndyCar Racing -->
+    <h3>IndyCar Racing (Papyrus, 1993)</h3>
+    <div class="two-col">
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>❌ Off</td></tr>
+              <tr><td>Reverse is a button</td><td>✅ On</td></tr>
+              <tr><td>Nascar mode</td><td>✅ On</td></tr>
+              <tr><td>Memory Write mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>Game key bindings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Upshift</td><td><kbd>A</kbd></td></tr>
+              <tr><td>Downshift</td><td><kbd>Z</kbd></td></tr>
+              <tr><td>Reverse</td><td><kbd>T</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.83rem; color:var(--text-muted); margin-top:.5rem;">
+          Configure controls in the game's options. Combine pedals mode required.
+          Recommended wheel rotation: 400°.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grand Prix 2 -->
+    <h3>Grand Prix 2 (MicroProse, 1996) <span class="badge badge-blue" style="margin-left:.5rem;">Memory Write</span></h3>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ Special requirements</div>
+      <ul style="margin:0; padding-left:1.2rem;">
+        <li>Requires <strong>DOSBox 0.74</strong> exactly (not 0.74-2 or 0.74-3).</li>
+        <li>Only works in <strong>Practice mode</strong> — Race mode causes DOSBox to crash.</li>
+        <li>Requires <strong>Memory Write mode</strong> — key press mode is not compatible.</li>
+      </ul>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>✅ On</td></tr>
+              <tr><td>Reverse is a button</td><td>❌ Off (reverse is a gear)</td></tr>
+              <tr><td>Use seventh gear</td><td>✅ On (7th = "spin" position)</td></tr>
+              <tr><td>Memory Write mode</td><td>✅ On</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>Memory settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Process name</td><td><code>dosbox.exe</code></td></tr>
+              <tr><td>Base address</td><td><code>0x01D3A1A0</code></td></tr>
+              <tr><td>Memory offset</td><td><code>0x291BF0</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colin McRae Rally (PC, not DOSBox but listed for completeness) -->
+    <h3>Colin McRae Rally (PC — native Windows)</h3>
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Not a DOSBox game</div>
+      Colin McRae Rally runs natively on Windows. This is included here for reference.
+    </div>
+    <div class="two-col">
+      <div>
+        <h4>Anyshift settings</h4>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>Detect Neutral</td><td>✅ On</td></tr>
+              <tr><td>Reverse is a button</td><td>❌ Off (reverse is a gear)</td></tr>
+              <tr><td>Memory Write mode</td><td>❌ Off</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>Game &amp; wheel settings</h4>
+        <ul style="font-size:.88rem;">
+          <li>Recommended rotation: <strong>540°</strong></li>
+          <li>Force feedback: ✅ supported</li>
+          <li>Independent pedals: ✅ supported</li>
+          <li>Change controls in-game. Default: <kbd>S</kbd> upshift, <kbd>Z</kbd> downshift</li>
+          <li>Select first gear <em>after</em> the countdown or the game will select reverse on start</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- General DOSBox tips -->
+    <h3>General tips for DOSBox games</h3>
+    <ul>
+      <li>Set <strong>combined pedals</strong> in your wheel software before starting DOSBox.</li>
+      <li>Configure wheel rotation to match the era of the game (270°–400° for most DOS games).</li>
+      <li>Engage <strong>1st gear</strong> before the race starts to avoid sync issues.</li>
+      <li>If gears feel unresponsive, try slightly increasing the <strong>Release key delay</strong> in Anyshift.</li>
+      <li>Some Papyrus games glitch if you leave a gear selected in the menus — return to neutral position.</li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Anyshift documentation &nbsp;|&nbsp;
+    <a href="index.html">Home</a> &nbsp;|&nbsp;
+    <a href="quick-reference.html">Quick Reference</a> &nbsp;|&nbsp;
+    <a href="https://github.com/Menkaura81/Anyshift">GitHub</a> &nbsp;|&nbsp;
+    <a href="https://www.buymeacoffee.com/Menkaura">☕ Buy me a coffee</a>
+  </p>
+</footer>
+
+</body>
+</html>

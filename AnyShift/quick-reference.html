@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Reference — Anyshift Docs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">⚙ ANYSHIFT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="quick-reference.html" class="active">Quick Reference</a></li>
+      <li><a href="dosbox.html">DOSBox</a></li>
+      <li><a href="duckstation.html">DuckStation</a></li>
+      <li><a href="pcsx2.html">PCSX2</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Quick Reference</div>
+    <h1>Quick Reference Guide</h1>
+    <p>A complete walkthrough of every section of the Anyshift interface, with all options explained.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── TOC ── -->
+  <div class="toc">
+    <h4>📋 On this page</h4>
+    <ol>
+      <li><a href="#modes">Operating Modes</a></li>
+      <li><a href="#joystick-selection">Joystick Selection</a></li>
+      <li><a href="#joystick-buttons">Joystick Buttons &amp; Clutch</a></li>
+      <li><a href="#key-selection">Key Selection</a></li>
+      <li><a href="#options">Options</a></li>
+      <li><a href="#memory-mode">Memory Mode</a></li>
+      <li><a href="#profiles">Profiles</a></li>
+      <li><a href="#running">Running Anyshift</a></li>
+      <li><a href="#tips">Tips &amp; Troubleshooting</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Modes ── -->
+  <section id="modes">
+    <h2>Operating Modes</h2>
+    <p>
+      Anyshift supports two fundamentally different ways of communicating your gear selection
+      to the game. You select the mode per profile.
+    </p>
+
+    <h3>Simulated Keystrokes Mode</h3>
+    <p>
+      This is the default mode. When you engage a gear on your H-shifter, Anyshift figures out
+      how many sequential up- or downshifts are needed to reach that gear from the current one,
+      and sends the corresponding number of key presses to the game.
+    </p>
+    <p>
+      <strong>Example:</strong> Currently in 2nd gear and you slot into 4th — Anyshift sends
+      two <kbd>S</kbd> (upshift) key presses.
+    </p>
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ How to use</div>
+      Set the exact same keys in Anyshift's <strong>Key Selection</strong> box and in your game's
+      controller/keyboard settings for upshift and downshift.
+    </div>
+    <p>
+      Occasionally the game and Anyshift can get out of sync (e.g. on rolling starts). You can
+      re-sync by manually pressing the keyboard keys to match the gear shown in-game.
+    </p>
+
+    <h3>Memory Write Mode</h3>
+    <p>
+      In this mode, Anyshift writes the gear number directly to the game's memory. The game
+      always reflects exactly what is on the shifter — perfect sync, no key presses needed.
+    </p>
+    <p>
+      Requires knowing the game's memory address for the gear variable. You can find it using
+      <a href="https://www.cheatengine.org/" target="_blank" rel="noopener">Cheat Engine</a>.
+      Several pre-configured presets are included (GT4, Enthusia, Grand Prix 2).
+    </p>
+    <div class="callout callout-danger">
+      <div class="callout-title">⛔ Important Warning</div>
+      <strong>Never use Memory Write mode in online games.</strong> Writing to process memory
+      can be detected by anti-cheat systems and result in a permanent ban.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Joystick Selection ── -->
+  <section id="joystick-selection">
+    <h2>Joystick Selection</h2>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Joysticks selection</div>
+      <div class="ui-row">
+        <span class="ui-label">Shifter</span>
+        <span class="ui-value">T500 RS Gear Shift ▾</span>
+        <span style="margin-left:1rem; font-size:.85rem; color:var(--text-muted);">☐ Clutch</span>
+        <span class="ui-value" style="margin-left:.5rem;">T500 RS Gear Shift ▾</span>
+      </div>
+    </div>
+
+    <p>
+      Select which joystick/controller device is your H-shifter using the left dropdown.
+    </p>
+    <p>
+      If you want to use a clutch pedal, tick the <strong>Clutch</strong> checkbox and select
+      the device that has the clutch axis from the right dropdown (it can be the same device
+      as the shifter, or a separate wheel/pedal unit).
+    </p>
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Note</div>
+      Devices are listed in the order Windows enumerates them. If a device doesn't appear,
+      make sure it is connected and recognized by Windows before launching Anyshift.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Joystick Buttons ── -->
+  <section id="joystick-buttons">
+    <h2>Joystick Buttons &amp; Clutch</h2>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Joystick Buttons</div>
+      <div class="ui-row" style="gap:.6rem;">
+        <span class="ui-value">1</span><span class="ui-value">3</span>
+        <span class="ui-value">5</span><span class="ui-value">7</span>
+        <span style="margin-left:1rem;" class="ui-label">Clutch Axis</span>
+        <span class="ui-value">0</span>
+      </div>
+      <div class="ui-row" style="gap:.6rem; margin-top:.4rem;">
+        <span class="ui-value">0</span><span class="ui-value">2</span>
+        <span class="ui-value">4</span><span class="ui-value">6</span>
+        <span style="margin-left:1rem;" class="ui-label">Bitepoint</span>
+        <span class="ui-value">75 %</span>
+      </div>
+      <div class="ui-row" style="gap:.6rem; margin-top:.4rem;">
+        <span class="ui-value">2</span><span class="ui-value">4</span>
+        <span class="ui-value">6</span><span class="ui-value" style="color:var(--accent);">R</span>
+      </div>
+    </div>
+
+    <p>
+      Each button in the grid corresponds to a gear position. The visual layout mirrors a
+      typical 6+R H-pattern shifter:
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Row/Col</th><th>Left lane</th><th>Center lane</th><th>Right lane</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Top</td><td>1st</td><td>3rd</td><td>5th (/ 7th)</td></tr>
+          <tr><td>Bottom</td><td>2nd</td><td>4th</td><td>6th (/ Reverse)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>How to assign a button</h3>
+    <ol>
+      <li>Click the UI button corresponding to the gear you want to assign.</li>
+      <li>Engage that gear on your physical shifter.</li>
+      <li>The interface will appear <em>frozen</em> — this is normal. Anyshift is waiting for a joystick input.</li>
+      <li>Once the shifter button is detected the number updates and the UI unfreezes.</li>
+      <li>Alternatively press <kbd>End</kbd> to cancel the assignment.</li>
+    </ol>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ Why does the UI freeze?</div>
+      This is a known limitation of how pygame (the joystick library) interacts with the GUI
+      thread. The app is working normally — only the window appears unresponsive.
+    </div>
+
+    <h3>Clutch Axis &amp; Bitepoint</h3>
+    <p>
+      <strong>Clutch Axis</strong> — the axis number on the selected clutch device that
+      corresponds to the clutch pedal. Axis 0 is typically the first axis; check your device's
+      axis order in Windows Game Controllers if unsure.
+    </p>
+    <p>
+      <strong>Bitepoint</strong> — the percentage of clutch travel required before a gear
+      change is allowed. At 75%, the clutch must be pressed at least 75% of its range before
+      Anyshift will register the shift. Set to 0 if you want gear changes without clutch input.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Key Selection ── -->
+  <section id="key-selection">
+    <h2>Key Selection</h2>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Key Selection</div>
+      <div class="ui-row">
+        <span class="ui-label">Upshift</span><span class="ui-value">s</span>
+        <span style="margin-left:1rem;" class="ui-label">Neutral</span><span class="ui-value">n</span>
+      </div>
+      <div class="ui-row" style="margin-top:.4rem;">
+        <span class="ui-label">Downshift</span><span class="ui-value">z</span>
+        <span style="margin-left:1rem;" class="ui-label">Reverse</span><span class="ui-value">c</span>
+      </div>
+      <div class="ui-row" style="margin-top:.6rem; font-size:.85rem; color:var(--text-muted);">
+        Press key delay <span class="ui-value" style="margin:0 .4rem;">0.05</span>
+        Release key delay <span class="ui-value" style="margin-left:.4rem;">0.3</span>
+      </div>
+    </div>
+
+    <h3>Default Key Mapping</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Action</th><th>Default Key</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Upshift</td>
+            <td><kbd>S</kbd></td>
+            <td>Must match the upshift binding in your game</td>
+          </tr>
+          <tr>
+            <td>Downshift</td>
+            <td><kbd>Z</kbd></td>
+            <td>Must match the downshift binding in your game</td>
+          </tr>
+          <tr>
+            <td>Neutral</td>
+            <td><kbd>N</kbd></td>
+            <td>Used when <em>Detect Neutral</em> is enabled</td>
+          </tr>
+          <tr>
+            <td>Reverse</td>
+            <td><kbd>C</kbd></td>
+            <td>Only used when <em>Reverse is a button</em> is enabled</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-title">ℹ Important</div>
+      Anyshift uses <strong>DirectInput scan codes</strong>, not virtual key codes. This means
+      keystrokes are sent at the hardware level and reach the game regardless of which window
+      has focus.
+    </div>
+
+    <h3>Key Delays</h3>
+    <p>
+      <strong>Press key delay</strong> — how long (in seconds) the simulated key press is held
+      down. Default: <code>0.05</code>.
+    </p>
+    <p>
+      <strong>Release key delay</strong> — how long Anyshift waits after releasing the key
+      before sending the next key press. Default: <code>0.3</code>.
+    </p>
+    <div class="callout callout-info">
+      <div class="callout-title">💡 When to adjust delays</div>
+      The defaults work with almost every game. If the game misses gear changes (especially
+      rapid multi-gear shifts), try increasing the release delay to <code>0.4</code> or
+      <code>0.5</code>. If gear changes feel sluggish, try reducing it slightly.
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Options ── -->
+  <section id="options">
+    <h2>Options</h2>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Options</div>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.88rem;">
+        <span>☐ Detect Neutral</span>
+        <span>☐ Reverse is a button</span>
+        <span>☐ Use seventh gear</span>
+        <span>☐ Nascar mode</span>
+      </div>
+    </div>
+
+    <p>These four checkboxes control how Anyshift interprets your shifter input and what gear
+    logic it applies. The correct combination depends entirely on the game you are playing.</p>
+
+    <div class="option-card">
+      <h4>☐ Detect Neutral</h4>
+      <p>
+        When enabled, taking the shifter out of any gear (returning to the neutral/centre
+        position) sends the Neutral key to the game. Use this for games that support a true
+        neutral gear, such as <em>Grand Prix 2</em> or <em>Colin McRae Rally</em>.
+      </p>
+      <p style="margin-top:.4rem; color:var(--text-muted); font-size:.85rem;">
+        ❌ Leave unchecked for Gran Turismo 4 (no neutral in that game).
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h4>☐ Reverse is a button</h4>
+      <p>
+        When enabled, engaging reverse on the shifter does <em>not</em> up/downshift to reach
+        reverse — it sends the Reverse key directly. Use this for games that treat reverse as
+        a standalone button press.
+      </p>
+      <p style="margin-top:.4rem; color:var(--text-muted); font-size:.85rem;">
+        ✅ Enable for Gran Turismo, NASCAR Racing, IndyCar Racing.<br/>
+        ❌ Leave unchecked for Enthusia (reverse is a sequential gear).
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h4>☐ Use seventh gear</h4>
+      <p>
+        Enable this if your shifter has a 7th gear position and you want to use it.
+        Make sure the 7th gear button is assigned in the Joystick Buttons section — Anyshift
+        will crash if this is enabled but no button is assigned.
+      </p>
+    </div>
+
+    <div class="option-card">
+      <h4>☐ Nascar mode</h4>
+      <p>
+        Legacy mode for old Papyrus games (NASCAR Racing series, IndyCar Racing).
+        In these games there is no neutral and the game <em>remembers</em> which gear you were
+        in when you selected reverse. Nascar mode works around this by downshifting all the way
+        to 1st before pressing reverse, preventing desynchronisation.
+      </p>
+      <p style="margin-top:.4rem; color:var(--text-muted); font-size:.85rem;">
+        ✅ Enable for NASCAR Racing, NASCAR Racing 2, IndyCar Racing.
+      </p>
+    </div>
+
+    <h3>Quick settings reference by game</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Detect Neutral</th>
+            <th>Reverse is button</th>
+            <th>7th Gear</th>
+            <th>Nascar mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Gran Turismo 4</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Enthusia</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Tokyo Xtreme Racer 3</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Tokyo Xtreme Racer Drift 2</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Gran Turismo 1 (DuckStation)</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+          <tr><td>NASCAR Racing</td><td>❌</td><td>✅</td><td>❌</td><td>✅</td></tr>
+          <tr><td>NASCAR Racing 2</td><td>❌</td><td>✅</td><td>❌</td><td>✅</td></tr>
+          <tr><td>IndyCar Racing</td><td>❌</td><td>✅</td><td>❌</td><td>✅</td></tr>
+          <tr><td>Grand Prix 2</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr>
+          <tr><td>Colin McRae Rally</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Indianapolis 500</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Memory Mode ── -->
+  <section id="memory-mode">
+    <h2>Memory Mode</h2>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">⛔ Do not use online</div>
+      Memory Write mode should <strong>never</strong> be used in any game with online
+      multiplayer. Writing to process memory may be detected by anti-cheat software and
+      result in a permanent ban.
+    </div>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Memory mode</div>
+      <div class="ui-row">
+        <span class="ui-label">☑ Active</span>
+        <span style="margin-left:1rem;font-size:.85rem;color:var(--text-muted);">Gear values ingame:</span>
+        <span class="ui-value">1:1 &nbsp; 3:3 &nbsp; 5:5 &nbsp; 7:7</span>
+      </div>
+      <div class="ui-row" style="margin-top:.4rem;">
+        <span class="ui-label">Process name</span><span class="ui-value">pcsx2.exe</span>
+      </div>
+      <div class="ui-row" style="margin-top:.4rem;">
+        <span class="ui-label">Base address</span><span class="ui-value">0x216FA320</span>
+        <span style="margin-left:1rem;font-size:.85rem;color:var(--text-muted);">N: -</span>
+      </div>
+      <div class="ui-row" style="margin-top:.4rem;">
+        <span class="ui-label">Addr. offset</span><span class="ui-value">0</span>
+        <span style="margin-left:1rem;font-size:.85rem;color:var(--text-muted);">2:2 &nbsp; 4:4 &nbsp; 6:6 &nbsp; R:42</span>
+      </div>
+    </div>
+
+    <h3>Fields explained</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Active</strong></td>
+            <td>Tick this checkbox to enable memory write mode. When active, key presses are not sent — gear values are written directly to memory.</td>
+          </tr>
+          <tr>
+            <td><strong>Process name</strong></td>
+            <td>The exact executable name of the running game or emulator (e.g. <code>pcsx2.exe</code>, <code>dosbox.exe</code>).</td>
+          </tr>
+          <tr>
+            <td><strong>Base address</strong></td>
+            <td>The base memory address of the process. For DOSBox 0.74 this is <code>0x01D3A1A0</code>. For PCSX2 you find this with Cheat Engine — no offset needed.</td>
+          </tr>
+          <tr>
+            <td><strong>Memory address offset</strong></td>
+            <td>Offset from the base address to the gear variable. For PCSX2 1.6 set this to <code>0</code> and put the full address in Base address. For DOSBox the Grand Prix 2 offset is <code>0x291BF0</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Gear values ingame</strong></td>
+            <td>The numeric values the game stores for each gear. These vary per game. For example Enthusia uses 1–6 for gears 1–6, while reverse might be 42.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Known working memory addresses</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Game</th><th>Emulator</th><th>Base address</th><th>Offset</th><th>Gear values</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Grand Prix 2</td>
+            <td>DOSBox 0.74</td>
+            <td><code>0x01D3A1A0</code></td>
+            <td><code>0x291BF0</code></td>
+            <td>1–7, N=0, R=gear</td>
+          </tr>
+          <tr>
+            <td>Gran Turismo 4</td>
+            <td>PCSX2 1.6</td>
+            <td colspan="2">Find with Cheat Engine, no offset needed</td>
+            <td>1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, R:42</td>
+          </tr>
+          <tr>
+            <td>Enthusia</td>
+            <td>PCSX2 1.6</td>
+            <td colspan="2">Find with Cheat Engine, no offset needed</td>
+            <td>1:1, 2:2, 3:3, 4:4, 5:5, 6:6, N:-, R:42</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Profiles ── -->
+  <section id="profiles">
+    <h2>Profiles</h2>
+
+    <div class="ui-section-box">
+      <div class="ui-section-label">Profiles</div>
+      <div class="ui-row">
+        <span class="ui-value" style="cursor:pointer;">Load profile</span>
+        <span class="ui-value">Enthusia pcsx2 mem mode ▾</span>
+      </div>
+      <div class="ui-row" style="margin-top:.5rem;">
+        <span class="ui-value" style="cursor:pointer;">Save profile</span>
+        <span class="ui-value" style="min-width:180px; color:var(--text-muted);">[new profile name]</span>
+      </div>
+    </div>
+
+    <p>
+      Profiles (stored as <code>.any</code> files in the <code>Presets/</code> folder) save
+      the complete configuration — joystick buttons, keys, options, and memory settings.
+    </p>
+    <ul>
+      <li>
+        <strong>Load profile</strong> — select a profile from the dropdown and click
+        <em>Load profile</em> to apply it.
+      </li>
+      <li>
+        <strong>Save profile</strong> — type a name in the text box and click
+        <em>Save profile</em> to create a new preset file.
+      </li>
+      <li>
+        <strong>Remember current options</strong> — saves the current settings as the default
+        configuration that loads automatically on the next startup.
+      </li>
+    </ul>
+
+    <h3>Included presets</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Preset file</th><th>Game</th><th>Mode</th></tr></thead>
+        <tbody>
+          <tr><td><code>Gran_Turismo4_pcsx2.any</code></td><td>Gran Turismo 4</td><td>Key Press</td></tr>
+          <tr><td><code>Gran_Turismo4_pcsx2_memMode.any</code></td><td>Gran Turismo 4</td><td>Memory Write</td></tr>
+          <tr><td><code>Enthusia_pcsx2.any</code></td><td>Enthusia</td><td>Key Press</td></tr>
+          <tr><td><code>Enthusia_pcsx2_memMode.any</code></td><td>Enthusia</td><td>Memory Write</td></tr>
+          <tr><td><code>Gran_Turismo1_Duckstation.any</code></td><td>Gran Turismo 1</td><td>Key Press</td></tr>
+          <tr><td><code>Grand_Prix2_DOSBox_memMode.any</code></td><td>Grand Prix 2</td><td>Memory Write</td></tr>
+          <tr><td><code>Nascar_Racing_DOSBox.any</code></td><td>NASCAR Racing</td><td>Key Press</td></tr>
+          <tr><td><code>Nascar_Racing2_DOSBox.any</code></td><td>NASCAR Racing 2</td><td>Key Press</td></tr>
+          <tr><td><code>IndyCar_Racing_DOSBox.any</code></td><td>IndyCar Racing</td><td>Key Press</td></tr>
+          <tr><td><code>NeedforSpeedPorsche.any</code></td><td>NFS Porsche Unleashed</td><td>Key Press</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Running ── -->
+  <section id="running">
+    <h2>Running Anyshift</h2>
+
+    <p>
+      Once everything is configured, click <strong>Run Anyshift</strong>. The window will
+      appear frozen — this is expected behaviour, not a crash.
+    </p>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠ The window freezes — this is normal</div>
+      Because the joystick event loop runs on the GUI thread, the interface becomes
+      unresponsive while Anyshift is active. Your system and the game window continue working
+      perfectly. Only the Anyshift window is unresponsive.
+    </div>
+
+    <ul>
+      <li>To <strong>stop</strong> Anyshift and return to the GUI, press <kbd>End</kbd> on your keyboard.</li>
+      <li>After stopping you can change settings, load a different profile, and run again.</li>
+      <li>The <kbd>End</kbd> key works system-wide — no need to focus the Anyshift window first.</li>
+    </ul>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── Tips ── -->
+  <section id="tips">
+    <h2>Tips &amp; Troubleshooting</h2>
+
+    <h3>Desynchronisation</h3>
+    <p>
+      In key press mode, Anyshift and the game can occasionally get out of sync — for example
+      on rolling starts (GT4) or after a spin. To re-sync, manually press the keyboard upshift
+      or downshift key until the in-game gear matches your physical shifter position, then
+      continue as normal.
+    </p>
+    <p>
+      To avoid desync at the start: engage the correct starting gear on your shifter
+      <em>before</em> the race begins or before you gain control of the car.
+    </p>
+
+    <h3>Anyshift doesn't start / has no effect</h3>
+    <ul>
+      <li>Run Anyshift as <strong>Administrator</strong> — this is the most common fix.</li>
+      <li>Make sure your shifter device is connected before launching Anyshift.</li>
+      <li>Check that the joystick is selected correctly in the Joystick Selection dropdowns.</li>
+    </ul>
+
+    <h3>Game doesn't detect the key presses</h3>
+    <ul>
+      <li>Try increasing the <strong>Release key delay</strong> to <code>0.4</code> or <code>0.5</code>.</li>
+      <li>Make sure the key in Anyshift matches exactly the key bound in the game.</li>
+      <li>Some games require the game window to be in focus. Anyshift uses DirectInput scan codes which bypass this for most games, but it may still affect a few older titles.</li>
+    </ul>
+
+    <h3>Clutch not working</h3>
+    <ul>
+      <li>Verify the <strong>Clutch Axis</strong> number. Open Windows Game Controllers and check which axis moves when you press the clutch pedal.</li>
+      <li>Lower the <strong>Bitepoint</strong> value if gear changes aren't registering even when the clutch is pressed all the way.</li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Anyshift documentation &nbsp;|&nbsp;
+    <a href="index.html">Home</a> &nbsp;|&nbsp;
+    <a href="https://github.com/Menkaura81/Anyshift">GitHub</a> &nbsp;|&nbsp;
+    <a href="https://www.buymeacoffee.com/Menkaura">☕ Buy me a coffee</a>
+  </p>
+</footer>
+
+</body>
+</html>
